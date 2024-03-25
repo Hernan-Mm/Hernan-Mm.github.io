@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videojuego Retro CV</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="css_StyleSheetHub.css">
+</head>
+<body>
+    <!-- Contenedor principal del fondo -->
+    <div class="background">
+        <!-- Contenedor de la consola -->
+        <div class="console-container">
+            <!-- Fondo de la consola -->
+            <div class="console-background"></div>
+            <!-- Consola -->
+            <div class="console">
+                <!-- Botón de inicio -->
+                <button id="start-button" class="start-button" onclick="showOptions()">Start</button>
+                <!-- Opciones del menú -->
+                <div id="options" class="options hidden">
+                    <button onclick="showSection('sobre-mi')">Sobre Mí</button>
+                    <button onclick="showSection('habilidades')">Habilidades</button>
+                    <button onclick="showSection('proyectos')">Proyectos</button>
+                    <button onclick="showSection('contacto')">Contacto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Contenido del modal -->
+        <div class="modal-content">
+            <!-- Botón de cierre -->
+            <span class="close" onclick="closeModal()">&times;</span>
+            <!-- Contenido de la sección "Sobre Mí" -->
+            <div id="sobre-mi-content" class="hidden">
+                <!-- Contenedor de la foto de perfil -->
+                <div class="profile-container">
+                    <div class="profile-picture">
+                        <img src="Imagenes/FotoPerfil.jpeg" alt="Foto de perfil">
+                    </div>
+                </div>
+                <!-- Texto descriptivo -->
+                <h2>HERNÁN MOREYRA</h2>
+                <p>PROGRAMADOR FULL STACK & UNITY DEVELOPER</p>
+                <p>Con una gran pasión por la tecnología, he invertido los últimos dos años en el aprendizaje de programación y desarrollo web, con un enfoque en la industria de los videojuegos. Busco oportunidades emocionantes para aplicar mi conjunto de habilidades en un nuevo campo creativo y desafiante.</p>
+            </div>
+            <!-- Contenido de la sección "Habilidades" -->
+            <div id="habilidades-content" class="hidden">
+                <h2>Habilidades</h2>
+                <h3>TECNOLOGÍAS:</h3>
+                <!-- Lista de habilidades -->
+                <ul>
+                    <li>Java</li>
+                    <li>Javascript</li>
+                    <li>React</li>
+                    <li>Spring</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>C#</li>
+                    <li>Unity</li>
+                    <li>MySQL</li>
+                </ul>
+                <h3>Cursos Masterclas:</h3>
+                <!-- Lista de cursos -->
+                <ul>
+                    <li>Curso fundamentos de programación (EDteam)</li>
+                    <li>Curso Introduccion unity3D (Domestika)</li>
+                    <li>Argentina programa 4.0</li>
+                    <li>Taller de desarrollo de videojuegos (UNRN)</li>
+                    <li>Curso de desarrollo de videojuegos (Fundación digital)</li>
+                    <li>Orientado a la programación en C# en Unity 3D</li>
+                </ul>
+            </div>
+            <!-- Contenido de la sección "Proyectos" -->
+            <div id="proyectos-content" class="hidden">
+                <h2>Proyectos</h2>
+                <p>Página en desarrollo</p>
+            </div>
+            <!-- Contenido de la sección "Contacto" -->
+            <div id="contacto-content" class="hidden">
+                <h2>Contacto</h2>
+                <p>Página en desarrollo</p>
+            </div>
+        </div>
+    </div>
+    <!-- Enlace al archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
