@@ -49,3 +49,5 @@ function closeModal() {
     var modal = document.getElementById('myModal');
     modal.style.display = 'none'; // Oculta el modal al hacer clic en el botón de cierre
 }
+
+

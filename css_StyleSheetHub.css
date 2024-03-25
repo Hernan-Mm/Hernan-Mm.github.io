@@ -54,15 +54,39 @@ body, html {
 
 /* Estilos para el botón de inicio */
 .start-button {
-    background-color: #f00; /* Color del botón de inicio */
-    color: #ffffff; /* Color del texto */
+    background-color: black; /* Color de fondo negro */
+    color: #ffffff; /* Color del texto blanco */
     padding: 50px 80px; /* Espaciado interno */
-    font-size: 35px; /* Tamaño de fuente */
+    font-size: 25px; /* Tamaño de fuente */
     border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
     cursor: pointer; /* Cursor de puntero */
-    margin-right: 250px; /* Ajuste de margen derecho */
-    margin-top: 50px; /* Ajuste de margen superior */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08); /* Sombra */
+   /* position: absolute; /* Posición absoluta */
+   margin-right: 250px; /* Ajuste de margen derecho */
+   margin-top: 50px; /* Ajuste de margen superior */
+transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 }
+
+/* Estilos cuando se pasa el mouse sobre el botón */
+.start-button:hover {
+    transform: translateY(-2px); /* Efecto de levantamiento */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff); /* Cambio de color de fondo con gradiente */
+    background-size: 200% 200%;
+    animation: gradientAnimation 2s infinite alternate; /* Animación del gradiente */
+}
+
+/* Animación del gradiente */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 
 /* Estilos para las opciones */
 .options {
