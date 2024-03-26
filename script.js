@@ -1,5 +1,8 @@
-// Función para mostrar las opciones al hacer clic en el botón "Start"
+// Función para mostrar las opciones al hacer clic en el botón "Start" y ocultar el botón "Start"
 function showOptions() {
+    var startButton = document.getElementById('start-button');
+    startButton.style.display = 'none'; // Oculta el botón "Start"
+
     var options = document.getElementById('options');
     options.classList.remove('hidden'); // Elimina la clase 'hidden' para mostrar las opciones
 }

@@ -56,7 +56,7 @@ body, html {
 .start-button {
     background-color: black; /* Color de fondo negro */
     color: #ffffff; /* Color del texto blanco */
-    padding: 50px 80px; /* Espaciado interno */
+    padding: 40px 60px; /* Espaciado interno */
     font-size: 25px; /* Tamaño de fuente */
     border: none; /* Sin borde */
     border-radius: 8px; /* Bordes redondeados */
@@ -104,13 +104,25 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     margin-bottom: 10px;
     padding: 8px 16px;
     font-size: 16px;
-    background-color: #00f; /* Color de fondo de los botones de opciones */
+    background-color: black; /* Color de fondo de los botones de opciones */
     color: #fff; /* Color del texto */
     border: none; /* Sin borde */
+    border-radius: 12px; /* Bordes redondeados */
     cursor: pointer; /* Cursor de puntero */
     margin-right: 250px; /* Ajuste de margen derecho */
     margin-top: 5px; /* Ajuste de margen superior */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transición suave, igual que el botón "Start" */
 }
+
+/* Estilos cuando se pasa el mouse sobre los botones de opciones */
+.options button:hover {
+    transform: translateY(-2px); /* Efecto de levantamiento */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff); /* Cambio de color de fondo con gradiente */
+    background-size: 200% 200%;
+    animation: gradientAnimation 2s infinite alternate; /* Animación del gradiente */
+}
+
 
 /* Clase para ocultar elementos */
 .hidden {
