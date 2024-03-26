@@ -32,7 +32,7 @@ body, html {
     left: 2;
     width: 30%;
     height: 50%;
-    background-color: rgba(81, 15, 235, 0.927); /* Color de fondo con opacidad */
+    background-color: rgba(81, 15, 235); /* Color de fondo con opacidad */
 }
 
 /* Estilos para la consola */
@@ -106,7 +106,7 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     font-size: 16px;
     background-color: black; /* Color de fondo de los botones de opciones */
     color: #fff; /* Color del texto */
-    border: none; /* Sin borde */
+    border: 1px solid #888; /* Borde */
     border-radius: 12px; /* Bordes redondeados */
     cursor: pointer; /* Cursor de puntero */
     margin-right: 250px; /* Ajuste de margen derecho */
