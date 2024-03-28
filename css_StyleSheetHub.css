@@ -169,7 +169,7 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: red;
     text-decoration: none;
 }
 
@@ -197,3 +197,20 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     height: 100%;
     object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
 }
+
+/* Estilos para el texto en H2 */
+.modal-content h2 {
+    font-family: 'Arial', sans-serif; /* Cambiar la fuente del texto */
+}
+
+/* Estilos para el panel "Sobre Mí" */
+#sobre-mi-content {
+    padding-top: 20px; /* Ajustar el espacio superior */
+}
+#sobre-mi-content h1,
+#sobre-mi-content h2,
+#sobre-mi-content p {
+    margin-top: 20px; /* Ajustar el margen superior para h1, h2, y p */
+}
+
+
