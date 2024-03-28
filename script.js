@@ -12,45 +12,49 @@ function showSection(sectionId) {
     var modal = document.getElementById('myModal');
     var sobreMiContent = document.getElementById('sobre-mi-content');
     var habilidadesContent = document.getElementById('habilidades-content');
-    var proyectosContent = document.getElementById('proyectos-content'); // Nuevo panel
-    var contactoContent = document.getElementById('contacto-content'); // Nuevo panel
+    var proyectosContent = document.getElementById('proyectos-content');
+    var contactoContent = document.getElementById('contacto-content');
     var profileContainer = document.querySelector('.profile-container');
 
+    // Ocultar todos los contenidos
+    sobreMiContent.classList.add('hidden');
+    habilidadesContent.classList.add('hidden');
+    proyectosContent.classList.add('hidden');
+    contactoContent.classList.add('hidden');
+    profileContainer.style.display = 'none';
+
+    // Mostrar solo el contenido correspondiente al botón clickeado
     if (sectionId === 'sobre-mi') {
-        modal.style.display = 'block'; // Muestra el modal
-        sobreMiContent.classList.remove('hidden'); // Muestra el contenido de "Sobre Mí"
-        habilidadesContent.classList.add('hidden'); // Oculta el contenido de "Habilidades"
-        proyectosContent.classList.add('hidden'); // Oculta el contenido de "Proyectos" (nuevo)
-        contactoContent.classList.add('hidden'); // Oculta el contenido de "Contacto" (nuevo)
-        profileContainer.style.display = 'block'; // Muestra la foto de perfil
+        modal.style.display = 'flex'; // Cambia a 'flex' para cubrir toda la pantalla
+        sobreMiContent.classList.remove('hidden');
+        profileContainer.style.display = 'block';
     } else if (sectionId === 'habilidades') {
-        modal.style.display = 'block'; // Muestra el modal
-        habilidadesContent.classList.remove('hidden'); // Muestra el contenido de "Habilidades"
-        sobreMiContent.classList.add('hidden'); // Oculta el contenido de "Sobre Mí"
-        proyectosContent.classList.add('hidden'); // Oculta el contenido de "Proyectos" (nuevo)
-        contactoContent.classList.add('hidden'); // Oculta el contenido de "Contacto" (nuevo)
-        profileContainer.style.display = 'none'; // Oculta la foto de perfil
-    } else if (sectionId === 'proyectos') { // Nuevo panel
-        modal.style.display = 'block'; // Muestra el modal
-        proyectosContent.classList.remove('hidden'); // Muestra el contenido de "Proyectos" (nuevo)
-        sobreMiContent.classList.add('hidden'); // Oculta el contenido de "Sobre Mí"
-        habilidadesContent.classList.add('hidden'); // Oculta el contenido de "Habilidades"
-        contactoContent.classList.add('hidden'); // Oculta el contenido de "Contacto" (nuevo)
-        profileContainer.style.display = 'none'; // Oculta la foto de perfil
-    } else if (sectionId === 'contacto') { // Nuevo panel
-        modal.style.display = 'block'; // Muestra el modal
-        contactoContent.classList.remove('hidden'); // Muestra el contenido de "Contacto" (nuevo)
-        sobreMiContent.classList.add('hidden'); // Oculta el contenido de "Sobre Mí"
-        habilidadesContent.classList.add('hidden'); // Oculta el contenido de "Habilidades"
-        proyectosContent.classList.add('hidden'); // Oculta el contenido de "Proyectos" (nuevo)
-        profileContainer.style.display = 'none'; // Oculta la foto de perfil
+        modal.style.display = 'flex'; // Cambia a 'flex' para cubrir toda la pantalla
+        habilidadesContent.classList.remove('hidden');
+    } else if (sectionId === 'proyectos') {
+        modal.style.display = 'flex'; // Cambia a 'flex' para cubrir toda la pantalla
+        proyectosContent.classList.remove('hidden');
+    } else if (sectionId === 'contacto') {
+        modal.style.display = 'flex'; // Cambia a 'flex' para cubrir toda la pantalla
+        contactoContent.classList.remove('hidden');
     }
+
+    // Ocultar otros contenidos cuando se muestra uno nuevo
+    var otherSections = document.querySelectorAll('.modal-content > div:not(#' + sectionId + '-content)');
+    otherSections.forEach(section => {
+        section.classList.add('hidden');
+    });
 }
 
 // Función para cerrar el modal al hacer clic en el botón de cierre (X)
 function closeModal() {
     var modal = document.getElementById('myModal');
     modal.style.display = 'none'; // Oculta el modal al hacer clic en el botón de cierre
+
+    // Ocultar todos los contenidos cuando se cierra el modal
+    var contents = document.querySelectorAll('.modal-content > div');
+    contents.forEach(content => {
+        content.classList.add('hidden');
+    });
+
 }
-
-

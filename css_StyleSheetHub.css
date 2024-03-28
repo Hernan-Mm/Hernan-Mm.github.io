@@ -144,11 +144,13 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 
 /* Estilos para el contenido del modal */
 .modal-content {
-    background-color: #fefefe; /* Color de fondo del contenido */
-    margin: 10% auto; /* Margen del contenido */
-    padding: 20px; /* Espaciado interno */
-    border: 1px solid #888; /* Borde */
-    width: 80%;
+    background-color: black; /* Fondo negro */
+    color: white; /* Texto blanco */
+    margin: 15% auto; /* Margen del contenido */
+    padding: 5px; /* Espaciado interno */
+    border: 2px solid #888; /* Borde */
+    width: 80%; /*Alto*/
+    height: 40%; /*Ancho*/
     max-height: 90%; /* Altura máxima del modal */
     overflow-y: auto; /* Scroll vertical si es necesario */
     position: relative; /* Posicionamiento relativo */
@@ -195,23 +197,3 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     height: 100%;
     object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
 }
-
-/* Estilos para la sección "Proyectos" */
-#proyectos-content, #contacto-content {
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Texto blanco */
-    padding: 20px; /* Espaciado interno */
-}
-
-/* Estilos específicos para el botón de Proyectos */
-.options #proyectos-btn {
-    background-color: #00ff00; /* Cambia el color del botón de Proyectos si lo deseas */
-}
-
-/* Estilos específicos para el botón de Contacto */
-.options #contacto-btn {
-    background-color: #ff0000; /* Cambia el color del botón de Contacto si lo deseas */
-}
-
-
-
