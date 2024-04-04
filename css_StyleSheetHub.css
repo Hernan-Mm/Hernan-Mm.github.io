@@ -139,14 +139,14 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4); /* Fondo oscuro semi-transparente */
+    background-color: rgba(0,0,0,0.4); /* Fondo oscuro */
 }
 
 /* Estilos para el contenido del modal */
 .modal-content {
     background-color: black; /* Fondo negro */
     color: white; /* Texto blanco */
-    margin: 10% auto; /* Margen del contenido */
+    margin: 5% auto; /* Margen del contenido */
     padding: 5px; /* Espaciado interno */
     border: 2px solid #888; /* Borde */
     width: 70%; /*Ancho*/
@@ -176,19 +176,19 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 /* Contenedor para la imagen de perfil en la esquina superior derecha */
 .profile-container {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 70px;
+    right: 70px;
 }
 
 /* Estilos para la imagen de perfil */
 .profile-picture {
-    width: 100px;
-    height: 100px;
+    width: 150px;/* Ancho aumentado */
+    height: 150px;/* Altura aumentada */
     background-color: #ccc; /* Color de fondo de la imagen */
     border-radius: 50%; /* Borde redondeado para formar un círculo */
     overflow: hidden; /* Oculta cualquier contenido adicional */
     border: 2px solid #fff; /* Borde blanco */
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Sombra */
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 5); /* Sombra blanca */
 }
 
 /* Estilos para la imagen de perfil dentro del contenedor */
@@ -205,13 +205,22 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 
 /* Estilos para el panel "Sobre Mí" */
 #sobre-mi-content {
-    padding-top: 20px; /* Ajustar el espacio superior */
+    padding-top: 100px; /* Ajustar el espacio superior */
 }
-#sobre-mi-content h1,
-#sobre-mi-content h2,
+
+/* Estilos para el texto dentro de la sección "Sobre Mí" */
+#sobre-mi-content h1 {
+    font-size: 35px; /* Tamaño de fuente para H1 */
+}
+
+#sobre-mi-content h2 {
+    font-size: 25px; /* Tamaño de fuente para H2 */
+}
+
 #sobre-mi-content p {
-    margin-top: 20px; /* Ajustar el margen superior para h1, h2, y p */
+    font-size: 17px; /* Tamaño de fuente para párrafos */
 }
+
 
 /*agregados 04/04/2023*/
 
