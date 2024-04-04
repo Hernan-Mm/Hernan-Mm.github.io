@@ -176,8 +176,8 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 /* Contenedor para la imagen de perfil en la esquina superior derecha */
 .profile-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 30px;
+    right: 30px;
 }
 
 /* Estilos para la imagen de perfil */
@@ -234,3 +234,7 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     cursor: pointer; /* Cambia el cursor al pasar sobre el video */
 }
 
+.project{
+
+    margin: 10px;
+}
