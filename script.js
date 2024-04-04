@@ -57,4 +57,6 @@ function closeModal() {
         content.classList.add('hidden');
     });
 
+    
+
 }

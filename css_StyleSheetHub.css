@@ -213,4 +213,9 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     margin-top: 20px; /* Ajustar el margen superior para h1, h2, y p */
 }
 
+.videoContainer video {
+    width: 20%; /* Ancho del video igual al 100% del contenedor */
+    height: 20%; /* Altura del video igual al 100% del contenedor */
+}
+
 
