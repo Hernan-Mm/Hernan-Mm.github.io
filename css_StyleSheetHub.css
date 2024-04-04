@@ -146,11 +146,11 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 .modal-content {
     background-color: black; /* Fondo negro */
     color: white; /* Texto blanco */
-    margin: 15% auto; /* Margen del contenido */
+    margin: 10% auto; /* Margen del contenido */
     padding: 5px; /* Espaciado interno */
     border: 2px solid #888; /* Borde */
-    width: 80%; /*Alto*/
-    height: 40%; /*Ancho*/
+    width: 70%; /*Ancho*/
+    height: 70%; /*Alto*/
     max-height: 90%; /* Altura máxima del modal */
     overflow-y: auto; /* Scroll vertical si es necesario */
     position: relative; /* Posicionamiento relativo */
@@ -213,9 +213,24 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     margin-top: 20px; /* Ajustar el margen superior para h1, h2, y p */
 }
 
-.videoContainer video {
-    width: 20%; /* Ancho del video igual al 100% del contenedor */
-    height: 20%; /* Altura del video igual al 100% del contenedor */
+/*agregados 04/04/2023*/
+
+.videoContainer {
+    position: relative;
+    width: 500px; /* Ancho del video */
+    height: 300px; /* Altura del video */
+    overflow: hidden;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+.videoContainer video {
+    position: absolute;
+    width: 100%; /* Ancho del video al 100% del contenedor */
+    height: 100%; /* Altura del video al 100% del contenedor */
+    left: 0;
+    top: 0;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el video */
+}
 

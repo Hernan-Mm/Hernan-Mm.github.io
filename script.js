@@ -57,6 +57,25 @@ function closeModal() {
         content.classList.add('hidden');
     });
 
-    
-
 }
+// agregados 04/04/24
+
+// Función para expandir el video al hacer clic y reproducirlo
+function expandVideo(video) {
+    if (video.paused) {
+        video.play(); // Comienza a reproducir el video si está pausado
+    } else {
+        video.pause(); // Pausa el video si ya está reproduciéndose
+    }
+
+    if (video.requestFullscreen) {
+        if (!document.fullscreenElement) {
+            video.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+}
+
