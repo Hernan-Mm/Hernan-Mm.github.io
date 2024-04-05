@@ -188,7 +188,7 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     border-radius: 50%; /* Borde redondeado para formar un círculo */
     overflow: hidden; /* Oculta cualquier contenido adicional */
     border: 2px solid #fff; /* Borde blanco */
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 5); /* Sombra blanca */
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 50); /* Sombra blanca */
 }
 
 /* Estilos para la imagen de perfil dentro del contenedor */
