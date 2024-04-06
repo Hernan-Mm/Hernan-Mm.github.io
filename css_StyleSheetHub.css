@@ -247,3 +247,20 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 
     margin: 10px;
 }
+
+/*agregados 05/04/2023*/
+
+/* Estilos para los elementos de contacto */
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-item i {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #555; /* Color de los iconos */
+}

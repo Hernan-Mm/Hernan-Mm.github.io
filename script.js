@@ -56,9 +56,7 @@ function closeModal() {
     contents.forEach(content => {
         content.classList.add('hidden');
     });
-
 }
-// agregados 04/04/24
 
 // Función para expandir el video al hacer clic y reproducirlo
 function expandVideo(video) {
@@ -78,4 +76,3 @@ function expandVideo(video) {
         }
     }
 }
-
