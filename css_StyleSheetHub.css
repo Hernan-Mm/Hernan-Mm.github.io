@@ -256,11 +256,69 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
 }
 
 .contact-item {
-    margin-bottom: 10px;
+    margin-bottom: 20px;/* Incrementa el espacio entre los elementos */
+    font-size: 20px; /* Aumenta el tamaño del texto */
 }
 
-.contact-item i {
+.contact-item .fab.fa-linkedin,
+.contact-item .far.fa-file-pdf {
     margin-right: 10px;
-    font-size: 24px;
-    color: #555; /* Color de los iconos */
+    font-size: 30px;
+    color: white;
 }
+
+.contact-info a {
+    margin-left: 5px; /* Ajusta el margen izquierdo de los enlaces */
+}
+.contact-item .fab,
+.contact-item .far {
+    font-size: 30px; /* Cambiar el tamaño de los iconos */
+    color: white; /* Color del texto de los iconos */
+}
+
+/* Cambiar el color solo de los enlaces específicos */
+.contact-item a[href="https://www.linkedin.com/in/hernanmoreyra-75764b154"],
+.contact-item a[href="https://wa.me/1161484909"],
+.contact-item a[href^="mailto:"],
+.contact-item a[href$=".pdf"] {
+    color: blue; /* Cambia el color de los enlaces específicos */
+}
+
+/* Estilos para el párrafo verde */
+.contacto-p {
+    color: grey; /* Color del texto verde */
+}
+
+.contact-item .fab.fa-linkedin {
+    color: #0077B5; /* Color para el icono de LinkedIn */
+}
+
+.contact-item .far.fa-file-pdf {
+    color: #FF0000; /* Color para el icono de PDF */
+}
+
+.contact-item .fab.fa-whatsapp {
+    color: #25D366; /* Color para el icono de WhatsApp */
+}
+.contact-item .far.fa-envelope {
+    color: #DB4437; /* Color para el icono de Gmail */
+}
+/* Estilos para el contenedor del logo en el modal */
+.logo-container {
+    position: absolute; /* Cambia a posición absoluta */
+    top: 50%; /* Coloca el contenedor en el centro vertical */
+    left: 50%; /* Coloca el contenedor en el centro horizontal */
+    transform: translate(-50%, -50%); /* Centra el contenedor exactamente en el medio */
+}
+
+
+/* Estilos para el logo */
+.logo {
+    max-width: 200px; /* Ancho máximo del logo */
+    max-height: 200px; /* Altura máxima del logo */
+}
+
+
+
+
+
