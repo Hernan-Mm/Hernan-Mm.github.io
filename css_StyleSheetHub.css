@@ -317,6 +317,49 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     max-width: 200px; /* Ancho máximo del logo */
     max-height: 200px; /* Altura máxima del logo */
 }
+/* Estilos generales para el cuerpo y HTML */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Oculta cualquier contenido adicional */
+}
+
+/* Estilos para el footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ajusta la altura del contenedor para alinear verticalmente */
+}
+
+.footer .logo-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo {
+    width: 80px; /* Ajusta el tamaño del logo según sea necesario */
+    height: 80px; /* Ajusta el tamaño del logo según sea necesario */
+    margin-bottom: 0px; /* Espacio entre el logo y el texto */
+}
+
+/* Estilos para el texto de copyright en el modal "Sobre Mí" */
+.footer #copyright-sobre-mi {
+    font-size: 9px;
+}
 
 
 
