@@ -304,7 +304,7 @@ transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
     color: #DB4437; /* Color para el icono de Gmail */
 }
 /* Estilos para el contenedor del logo en el modal */
-.logo-container {
+.logo-container-contacto {
     position: absolute; /* Cambia a posición absoluta */
     top: 50%; /* Coloca el contenedor en el centro vertical */
     left: 50%; /* Coloca el contenedor en el centro horizontal */
