@@ -325,43 +325,119 @@ body, html {
     overflow: hidden; /* Oculta cualquier contenido adicional */
 }
 
-/* Estilos para el footer */
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.footer .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* Ajusta la altura del contenedor para alinear verticalmente */
-}
-
-.footer .logo-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer-logo {
-    width: 80px; /* Ajusta el tamaño del logo según sea necesario */
-    height: 80px; /* Ajusta el tamaño del logo según sea necesario */
-    margin-bottom: 0px; /* Espacio entre el logo y el texto */
-}
-
 /* Estilos para el texto de copyright en el modal "Sobre Mí" */
-.footer #copyright-sobre-mi {
+.logo-content #copyright-sobre-mi {
     font-size: 9px;
 }
 
+/* Estilos para el contenedor del logo en el modal */
+.logo-container {
+    position: absolute; /* Cambia a posición absoluta */
+    top: 80%; /* Coloca el contenedor en el centro vertical */
+    left: 50%; /* Coloca el contenedor en el centro horizontal */
+    transform: translate(-50%, -50%); /* Centra el contenedor exactamente en el medio */
+}
+
+/* Estilos para el logo */
+.footer-logo {
+    width: 100px; /* Tamaño mediano para la imagen */
+    height: auto; /* Mantén la proporción de la imagen */
+    display: block; /* Ajusta el comportamiento de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/* Estilos para el contenedor de habilidades y cursos */
+.skills-courses-container {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+    margin-top: 20px; /* Ajusta el margen superior */
+}
+
+/* Estilos para el contenedor de la lista de habilidades */
+.skills-list {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    margin-right: 20px; /* Ajusta el margen derecho entre la lista de habilidades y la lista de cursos */
+}
+
+/* Estilos para el contenedor de la lista de cursos */
+.course-list-container {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    margin-top: -60px; /* Ajusta el margen superior para subir el contenedor */
+}
+
+/* Estilos para las listas de habilidades y cursos */
+ul {
+    list-style-type: none; /* Elimina los marcadores de lista */
+    padding-left: 20px; /* Elimina el relleno predeterminado de la lista */
+}
+
+.course-list {
+    margin-top: 0; /* Elimina el margen superior de la primera lista de cursos */
+}
+
+/* Estilos para el texto de la lista */
+.skills-list li {
+    font-size: 18px; /* Tamaño de la fuente */
+    margin-bottom: 5px; /* Espaciado inferior entre los elementos de la lista */
+}
+/* Iconos */
+.fa {
+    margin-right: 10px;
+    font-size: 24px;
+}
+/*Colore Iconos*/
+.fa-java {
+    color: #007396; /* Color para el icono de Java */
+}
+
+.fa-js {
+    color: #f7df1e; /* Color para el icono de JavaScript */
+}
+
+.fa-react {
+    color: #61dafb; /* Color para el icono de React */
+}
+
+.fa-html5 {
+    color: #e34f26; /* Color para el icono de HTML */
+}
+
+.fa-css3-alt {
+    color: #264de4; /* Color para el icono de CSS */
+}
+
+.fa-cuttlefish {
+    color: #239120; /* Color para el icono de C# */
+}
+
+.fa-unity {
+    color: white; /* Color para el icono de Unity */
+}
+
+.fa-database {
+    color: #4479a1; /* Color para el icono de MySQL */
+}
 
 
+/* Lista de habilidades */
+.skills-list ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+/* Lista de cursos */
+.course-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* Iconos */
+.fa,
+.fas {
+    margin-right: 10px;
+    font-size: 18px;
+    color: blue;
+}
 
 
