@@ -439,5 +439,25 @@ ul {
     font-size: 18px;
     color: blue;
 }
-
+/* Cambios para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    /* Ajuste del tamaño de la consola en dispositivos móviles */
+    .console-container {
+        width: 90%;
+        height: auto;
+        margin: 20px auto;
+    }
+    /* Ajuste del tamaño del botón de inicio en dispositivos móviles */
+    .start-button {
+        padding: 20px 40px;
+        font-size: 20px;
+        margin-right: 0;
+        margin-top: 20px;
+    }
+    /* Ajuste del tamaño de la imagen de perfil en dispositivos móviles */
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+}
 
