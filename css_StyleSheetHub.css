@@ -439,25 +439,70 @@ ul {
     font-size: 18px;
     color: blue;
 }
-/* Cambios para dispositivos móviles */
+/* Cambio de fondo para pantallas pequeñas */
 @media only screen and (max-width: 600px) {
-    /* Ajuste del tamaño de la consola en dispositivos móviles */
-    .console-container {
-        width: 90%;
-        height: auto;
-        margin: 20px auto;
+    .background {
+        background-image: url('Imagenes/ConsolaRetro.png'); /* Cambia la imagen de fondo en pantallas pequeñas */
+        background-repeat: no-repeat; /* Evita la repetición de la imagen */
+        background-size: 130%; /* Ajusta el tamaño de la imagen para que quepa */
+        background-position: center center; /* Centra la imagen en la pantalla */
+        background-color: black; /* Cambia el color de fondo a negro */
     }
-    /* Ajuste del tamaño del botón de inicio en dispositivos móviles */
+
+    /* Estilos para la consola en pantallas pequeñas */
+    .console {
+        background: none; /* Elimina la imagen de fondo */
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-top: 0; /* Elimina el margen superior */
+        width: 90%; /* Ancho del contenedor de la consola */
+        height: 50%; /* Altura del contenedor de la consola */
+        padding: 0px; /* Añade relleno alrededor del contenido */
+    }
+
+    /* Inhabilitar el fondo de la consola en pantallas pequeñas */
+    .console-background {
+        display: none; /* Oculta el elemento que define el fondo */
+    }
+    .options {
+        margin-left: 110px;
+        top: -50px; /* Ajuste de posición vertical */
+        transform: translateX(-50%);
+    }
+
     .start-button {
-        padding: 20px 40px;
-        font-size: 20px;
-        margin-right: 0;
-        margin-top: 20px;
+        margin-left: 400px;
+        margin-top: 0px; /* Ajuste de posición vertical */
+        transform: translateX(-50%);
     }
-    /* Ajuste del tamaño de la imagen de perfil en dispositivos móviles */
+    .modal-content {
+        
+        margin: 2% auto; /* Margen del contenido */
+        padding: 5px; /* Espaciado interno */
+        border: 2px solid #888; /* Borde */
+        width: 100%; /*Ancho*/
+        height: 100%; /*Alto*/
+        max-height: 100%; /* Altura máxima del modal */
+        overflow-y: auto; /* Scroll vertical si es necesario */
+        position: relative; /* Posicionamiento relativo */
+    }
+
     .profile-picture {
-        width: 100px;
-        height: 100px;
+        width: 100px;/* Ancho aumentado */
+        height: 90px;/* Altura aumentada */
     }
+
+    .videoContainer {
+        position: relative;
+        width: 250px; /* Ancho del video */
+        height: 150px; /* Altura del video */
+        
+    }
+    .logo-container-contacto {
+        position: absolute; /* Cambia a posición absoluta */
+        top: 80%; /* Coloca el contenedor en el centro vertical */
+        left: 50%; /* Coloca el contenedor en el centro horizontal */
+        transform: translate(-50%, -50%); /* Centra el contenedor exactamente en el medio */
+    }
+   
 }
 
