@@ -563,8 +563,8 @@ ul {
 
     .videoContainer {
         position: relative;
-        width: 250px; /* Ancho del video */
-        height: 150px; /* Altura del video */
+        width: 300px; /* Ancho del video */
+        height: 200px; /* Altura del video */
         
     }
     .logo-container-contacto {
