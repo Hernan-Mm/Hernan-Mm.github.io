@@ -32,7 +32,7 @@ body, html {
     left: 2;
     width: 30%;
     height: 50%;
-    background-color: rgba(81, 15, 235); /* Color de fondo con opacidad */
+    background-color: rgba(0, 0, 0); /* Color de fondo con opacidad */
 }
 
 /* Estilos para la consola */
@@ -563,8 +563,8 @@ ul {
 
     .videoContainer {
         position: relative;
-        width: 300px; /* Ancho del video */
-        height: 200px; /* Altura del video */
+        width: 350px; /* Ancho del video */
+        height: 250px; /* Altura del video */
         
     }
     .logo-container-contacto {
