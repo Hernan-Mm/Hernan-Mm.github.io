@@ -1,251 +1,998 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <!-- Configuración básica -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hernan Moreyra CV</title>
-    <!-- Enlace al archivo CSS -->
-    <link rel="stylesheet" href="css_StyleSheetHub.css">
-    <!-- Enlace al favicon -->
-    <link rel="icon" href="Imagenes/Favicon-32x32.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Hernán MM - Dev Gamer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuentes gaming -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+<body class="gamer-theme">
+    <!-- Pantalla de Inicio Gameboy -->
+    <div id="gameboy-start" class="gameboy-start-screen">
+        <div class="gameboy-container">
+            <div class="gameboy">
+                <div class="gameboy-screen">
+                    <div class="screen-content">
+                        <div class="nintendo-logo">
+                            <span>NINTENDO</span>
+                        </div>
+                        <div class="game-title">
+                            <h1>HERNÁN_MM</h1>
+                            <p>PORTFOLIO.EXE</p>
+                        </div>
+                        <div class="main-menu">
+                            <div class="menu-option">> NEW GAME</div>
+                            <div class="menu-option">> CONTINUE</div>
+                            <div class="menu-option">> OPTIONS</div>
+                            <div class="menu-option">> CREDITS</div>
+                        </div>
+                        <div class="battery-indicator">
+                            <div class="battery-bar"></div>
+                            <span>BATT 100%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gameboy-controls">
+                    <div class="d-pad">
+                        <div class="d-pad-up"></div>
+                        <div class="d-pad-down"></div>
+                        <div class="d-pad-left"></div>
+                        <div class="d-pad-right"></div>
+                        <div class="d-pad-center"></div>
+                    </div>
+                    <div class="action-buttons">
+                        <div class="button-b">B</div>
+                        <div class="button-a">A</div>
+                    </div>
+                </div>
+                <div class="gameboy-buttons">
+                    <div class="start-select">
+                        <div class="select-btn">SELECT</div>
+                        <div class="start-btn" id="startButton">START</div>
+                    </div>
+                </div>
+                <div class="gameboy-speaker">
+                    <div class="speaker-holes">
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="power-light">
+                <div class="power-indicator"></div>
+                <span>POWER</span>
+            </div>
+        </div>
+    </div>
 
-<body>
-        <!-- Contenedor principal del fondo -->
-    <div class="background">
-        <!-- Contenedor de la consola -->
-        <div class="console-container">
-            <!-- Fondo de la consola -->
-            <div class="console-background"></div>
-            <!-- Consola -->
-            <div class="console">
-                <!-- Botón de inicio -->
-                <button id="start-button" class="start-button" onclick="showOptions()">Start</button>
-                <!-- Opciones del menú -->
-                <div id="options" class="options hidden">
-                    <button onclick="showSection('sobre-mi')">Sobre Mí</button>
-                    <button onclick="showSection('habilidades')">Habilidades</button>
-                    <button onclick="showSection('proyectos')">Proyectos</button>
-                    <button onclick="showSection('contacto')">Contacto</button>
+    <!-- Portfolio Gamer (oculto inicialmente) -->
+    <div id="portfolio-content" class="portfolio-content" style="display: none;">
+        <!-- Efectos de partículas para fondo gaming -->
+        <div id="particles-js"></div>
+        
+        <!-- Terminal Console Effect -->
+        <div class="console-loader">
+            <div class="terminal-text">
+                <span class="command">> Inicializando sistema...</span>
+                <span class="command">> Cargando portfolio...</span>
+                <span class="command">> Bienvenido Dev_Gamer...</span>
+            </div>
+        </div>
+
+        <!-- Navegación Estilo Gaming -->
+        <nav class="navbar gaming-nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="pixel-logo">
+                        <span class="pixel-text">HERNA</span>
+                        <span class="pixel-accent">N_MM</span>
+                    </div>
+                </div>
+                <ul class="nav-menu gaming-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link gaming-link">
+                            <i class="fas fa-home"></i>
+                            INICIO
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link gaming-link">
+                            <i class="fas fa-user"></i>
+                            SOBRE MÍ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link gaming-link">
+                            <i class="fas fa-cog"></i>
+                            HABILIDADES
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link gaming-link">
+                            <i class="fas fa-gamepad"></i>
+                            PROYECTOS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link gaming-link">
+                            <i class="fas fa-terminal"></i>
+                            CONTACTO
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="theme-toggle gaming-toggle">
+                        <button id="themeButton" class="pixel-button">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="sound-toggle">
+                        <button id="soundButton" class="pixel-button">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="hamburger gaming-hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sección Hero Gaming -->
+        <section id="home" class="hero gaming-hero">
+            <div class="scanlines"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="console-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <span class="window-title">terminal.exe</span>
+                        </div>
+                        <div class="window-content">
+                            <h1 class="hero-title gaming-title">
+                                <span class="typewriter">>_ HERNÁN MOREYRA</span>
+                                <span class="subtitle gaming-subtitle">
+                                    <span class="blink">_</span> FULL_STACK_DEV | GAMER
+                                </span>
+                            </h1>
+                            <p class="hero-description gaming-description">
+                                <span class="command-prompt">></span> 
+                                Transformando líneas de código en experiencias digitales épicas. 
+                                Especializado en desarrollo web con esencia gamer.
+                            </p>
+                            <div class="hero-buttons gaming-buttons">
+                                <a href="#projects" class="btn gaming-btn primary">
+                                    <i class="fas fa-play"></i>
+                                    START PROJECTS
+                                </a>
+                                <a href="#contact" class="btn gaming-btn secondary">
+                                    <i class="fas fa-code"></i>
+                                    CONTACT_ME
+                                </a>
+                            </div>
+                            <div class="hero-stats gaming-stats">
+                                <div class="stat">
+                                    <span class="stat-number">2+</span>
+                                    <span class="stat-label">AÑOS CODING</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">15+</span>
+                                    <span class="stat-label">PROYECTOS</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">10+</span>
+                                    <span class="stat-label">TECNOLOGÍAS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image gaming-image">
+                    <div class="character-card">
+                        <div class="character-avatar">
+                            <img src="Imagenes/FotoPerfil.jpeg" alt="Hernán Dev" class="pixel-art"
+                                 onerror="this.style.display='none'; document.getElementById('pixelPlaceholder').style.display='block'">
+                            <div id="pixelPlaceholder" class="pixel-placeholder">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3>PLAYER_STATS</h3>
+                            <div class="stats-bar">
+                                <span class="stat-name">HTML/CSS</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="stats-bar">
+                                <span class="stat-name">JAVASCRIPT</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-level="78"></div>
+                                </div>
+                            </div>
+                            <div class="stats-bar">
+                                <span class="stat-name">REACT</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-level="75"></div>
+                                </div>
+                            </div>
+                            <div class="stats-bar">
+                                <span class="stat-name">NODE.JS</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-level="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Sobre Mí Gaming -->
+        <section id="about" class="about gaming-about">
+            <div class="container">
+                <div class="section-header gaming-header">
+                    <h2 class="section-title gaming-section-title">
+                        <span class="title-icon"><i class="fas fa-user"></i></span>
+                        SOBRE_MÍ
+                    </h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="about-content gaming-about-content">
+                    <div class="about-text gaming-about-text">
+                        <div class="console-text">
+                            <p class="command-line">
+                                <span class="prompt">></span> 
+                                <span class="text">Soy Desarrollador Full Stack con una base sólida en atención al cliente y gastronomía: dos áreas que me enseñaron algo que muchos devs pasan por alto — cómo entender a las personas y crear soluciones que realmente sirvan.</span>
+                            </p>
+                            <p class="command-line">
+                                <span class="prompt">></span> 
+                                <span class="text">Mi camino en tecnología nació desde el mundo gamer: crecí explorando sistemas, mods, interfaces y preguntándome cómo funcionaban por dentro. Esa curiosidad se transformó en proyectos reales y en una mentalidad creativa orientada a experiencias digitales fluidas, funcionales y divertidas.</span>
+                            </p>
+                            <p class="command-line">
+                                <span class="prompt">></span> 
+                                <span class="text">Me formé en Egg Programación y Argentina Programa 4.0, donde aprendí a trabajar en equipo, resolver problemas y manejar tecnologías actuales del desarrollo web. Hoy combino ese conocimiento técnico con mi lado gamer para crear proyectos que tienen propósito, identidad y detalle.</span>
+                            </p>
+                            <p class="command-line">
+                                <span class="prompt">></span> 
+                                <span class="text">Cuando no estoy codeando, probablemente estoy jugando, testeando nuevas herramientas o experimentando ideas que después terminan convertidas en proyectos.</span>
+                            </p>
+                        </div>
+                        <div class="about-cta gaming-cta">
+                            <a href="#contact" class="btn gaming-btn primary">
+                                <i class="fas fa-gamepad"></i>
+                                UNIRSE AL EQUIPO
+                            </a>
+                        </div>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature-card pixel-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>CODE_MASTER</h3>
+                            <p>Desarrollo soluciones limpias y eficientes</p>
+                        </div>
+                        <div class="feature-card pixel-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>GAMER_SOUL</h3>
+                            <p>UX/UI pensado para máxima experiencia</p>
+                        </div>
+                        <div class="feature-card pixel-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>FAST_LEARNER</h3>
+                            <p>Adaptación rápida a nuevas tecnologías</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Habilidades Gaming -->
+        <section id="skills" class="skills gaming-skills">
+            <div class="container">
+                <div class="section-header gaming-header">
+                    <h2 class="section-title gaming-section-title">
+                        <span class="title-icon"><i class="fas fa-cog"></i></span>
+                        SKILL_TREE
+                    </h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="skills-grid gaming-skills-grid">
+                    
+                    <!-- Frontend Skills -->
+                    <div class="skill-category pixel-card">
+                        <div class="category-header">
+                            <i class="fab fa-html5 category-icon"></i>
+                            <h3 class="category-title">FRONTEND</h3>
+                        </div>
+                        <div class="skills-list gaming-skills-list">
+                            <div class="skill-item gaming-skill" data-level="90">
+                                <div class="skill-info">
+                                    <i class="fab fa-html5 skill-icon"></i>
+                                    <span class="skill-name">HTML5</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">90%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="85">
+                                <div class="skill-info">
+                                    <i class="fab fa-css3-alt skill-icon"></i>
+                                    <span class="skill-name">CSS3</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">85%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="80">
+                                <div class="skill-info">
+                                    <i class="fab fa-js-square skill-icon"></i>
+                                    <span class="skill-name">JavaScript</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">80%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="75">
+                                <div class="skill-info">
+                                    <i class="fab fa-react skill-icon"></i>
+                                    <span class="skill-name">React</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Skills -->
+                    <div class="skill-category pixel-card">
+                        <div class="category-header">
+                            <i class="fas fa-server category-icon"></i>
+                            <h3 class="category-title">BACKEND</h3>
+                        </div>
+                        <div class="skills-list gaming-skills-list">
+                            <div class="skill-item gaming-skill" data-level="75">
+                                <div class="skill-info">
+                                    <i class="fab fa-node-js skill-icon"></i>
+                                    <span class="skill-name">Node.js</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">75%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="70">
+                                <div class="skill-info">
+                                    <i class="fas fa-database skill-icon"></i>
+                                    <span class="skill-name">PostgreSQL</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">70%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="72">
+                                <div class="skill-info">
+                                    <i class="fas fa-bolt skill-icon"></i>
+                                    <span class="skill-name">Express</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">72%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="68">
+                                <div class="skill-info">
+                                    <i class="fab fa-java skill-icon"></i>
+                                    <span class="skill-name">Java</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">68%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Gaming -->
+                    <div class="skill-category pixel-card">
+                        <div class="category-header">
+                            <i class="fas fa-tools category-icon"></i>
+                            <h3 class="category-title">HERRAMIENTAS</h3>
+                        </div>
+                        <div class="skills-list gaming-skills-list">
+                            <div class="skill-item gaming-skill" data-level="82">
+                                <div class="skill-info">
+                                    <i class="fab fa-git-alt skill-icon"></i>
+                                    <span class="skill-name">Git</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">82%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="85">
+                                <div class="skill-info">
+                                    <i class="fab fa-github skill-icon"></i>
+                                    <span class="skill-name">GitHub</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">85%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="65">
+                                <div class="skill-info">
+                                    <i class="fab fa-unity skill-icon"></i>
+                                    <span class="skill-name">Unity</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">65%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item gaming-skill" data-level="70">
+                                <div class="skill-info">
+                                    <i class="fas fa-code skill-icon"></i>
+                                    <span class="skill-name">C#</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="level-bar">
+                                        <div class="level-fill"></div>
+                                    </div>
+                                    <span class="level-percent">70%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos Gaming - CARRUSEL COMPLETAMENTE FUNCIONAL -->
+        <section id="projects" class="projects gaming-projects">
+            <div class="container">
+                <div class="section-header gaming-header">
+                    <h2 class="section-title gaming-section-title">
+                        <span class="title-icon"><i class="fas fa-gamepad"></i></span>
+                        MIS_PROYECTOS
+                    </h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="projects-grid gaming-projects-grid">
+                    
+                    <!-- Juegos Unity - Video único -->
+                    <div class="project-card gaming-project-card">
+                        <div class="project-header">
+                            <div class="project-badge">GAME DEV</div>
+                            <h3 class="project-title">JUEGOS UNITY</h3>
+                            <div class="project-difficulty">
+                                <span class="difficulty-label">DIFICULTAD</span>
+                                <div class="difficulty-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-image gaming-project-image">
+                            <div class="project-screenshot">
+                                <video class="project-video" controls poster="Videos/poster-unity.jpg">
+                                    <source src="Videos/ZRush_Proyect.mp4" type="video/mp4">
+                                    <source src="Videos/ZRush_Proyect.webm" type="video/webm">
+                                    Tu navegador no soporta el elemento de video.
+                                </video>
+                                <div class="video-overlay">
+                                    <button class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description gaming-description">
+                                Desarrollo de videojuegos con Unity y C#. Especializado en sprites 2D, 
+                                mecánicas de juego fluidas y diseño de niveles. Incluye proyectos con 
+                                IA enemiga, sistemas de puntuación y efectos visuales avanzados.
+                            </p>
+                            <div class="project-tech gaming-tech">
+                                <span class="tech-tag pixel-tag">UNITY</span>
+                                <span class="tech-tag pixel-tag">C#</span>
+                                <span class="tech-tag pixel-tag">SPRITE 2D</span>
+                                <span class="tech-tag pixel-tag">GAME DESIGN</span>
+                            </div>
+                            <div class="project-links gaming-links">
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fab fa-github"></i>
+                                    VER CÓDIGO
+                                </a>
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    VER DEMO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyectos Web - Carrusel con 2 videos -->
+                    <div class="project-card gaming-project-card">
+                        <div class="project-header">
+                            <div class="project-badge">WEB DEV</div>
+                            <h3 class="project-title">PROYECTOS WEB</h3>
+                            <div class="project-difficulty">
+                                <span class="difficulty-label">DIFICULTAD</span>
+                                <div class="difficulty-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-image gaming-project-image">
+                            <div class="project-screenshot">
+                                <div class="video-carousel">
+                                    <!-- Video 1 - Barbería -->
+                                    <div class="video-item active">
+                                        <video class="project-video" controls poster="Videos/poster-barberia.jpg">
+                                            <source src="Videos/ProyectoBarberia.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+                                        <div class="video-overlay">
+                                            <button class="play-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Video 2 - Número Secreto -->
+                                    <div class="video-item">
+                                        <video class="project-video" controls poster="Videos/poster-secreto.jpg">
+                                            <source src="Videos/ProyectoNumeroSecreto.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+                                        <div class="video-overlay">
+                                            <button class="play-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Controles del carrusel -->
+                                    <div class="carousel-controls">
+                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Indicadores del carrusel (se generan automáticamente con JS) -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description gaming-description">
+                                Desarrollo web frontend con enfoque en experiencia de usuario. 
+                                Incluye sitio web responsivo para barbería con diseño moderno 
+                                y juego interactivo de número secreto con lógica JavaScript.
+                            </p>
+                            <div class="project-tech gaming-tech">
+                                <span class="tech-tag pixel-tag">HTML5</span>
+                                <span class="tech-tag pixel-tag">CSS3</span>
+                                <span class="tech-tag pixel-tag">JAVASCRIPT</span>
+                                <span class="tech-tag pixel-tag">RESPONSIVE</span>
+                            </div>
+                            <div class="project-links gaming-links">
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fab fa-github"></i>
+                                    VER CÓDIGO
+                                </a>
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    VER SITIO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Más Juegos Unity - Carrusel con 3 videos -->
+                    <div class="project-card gaming-project-card">
+                        <div class="project-header">
+                            <div class="project-badge">MORE GAMES</div>
+                            <h3 class="project-title">MÁS JUEGOS UNITY</h3>
+                            <div class="project-difficulty">
+                                <span class="difficulty-label">DIFICULTAD</span>
+                                <div class="difficulty-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-image gaming-project-image">
+                            <div class="project-screenshot">
+                                <div class="video-carousel">
+                                    <!-- Video 1 - Runner -->
+                                    <div class="video-item active">
+                                        <video class="project-video" controls poster="Videos/poster-run.jpg">
+                                            <source src="Videos/ProyectoRun.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+                                        <div class="video-overlay">
+                                            <button class="play-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Video 2 - Star Wars -->
+                                    <div class="video-item">
+                                        <video class="project-video" controls poster="Videos/poster-starwars.jpg">
+                                            <source src="Videos/StarWarsB by Hernan_MM.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+                                        <div class="video-overlay">
+                                            <button class="play-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Video 3 - Beat'em Up -->
+                                    <div class="video-item">
+                                        <video class="project-video" controls poster="Videos/poster-beatemup.jpg">
+                                            <source src="Videos/Vídeo beat em up.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento de video.
+                                        </video>
+                                        <div class="video-overlay">
+                                            <button class="play-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Controles del carrusel -->
+                                    <div class="carousel-controls">
+                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Indicadores del carrusel (se generan automáticamente con JS) -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description gaming-description">
+                                Colección de juegos 2D desarrollados en Unity. Incluye runner infinito, 
+                                juego de naves al estilo Star Wars y beat'em up con combates cuerpo a cuerpo. 
+                                Todos con animaciones fluidas y mecánicas pulidas.
+                            </p>
+                            <div class="project-tech gaming-tech">
+                                <span class="tech-tag pixel-tag">UNITY 2D</span>
+                                <span class="tech-tag pixel-tag">C#</span>
+                                <span class="tech-tag pixel-tag">ANIMATION</span>
+                                <span class="tech-tag pixel-tag">GAME MECHANICS</span>
+                            </div>
+                            <div class="project-links gaming-links">
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fab fa-github"></i>
+                                    VER CÓDIGO
+                                </a>
+                                <a href="#" class="project-link gaming-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    VER DEMO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto Gaming -->
+        <section id="contact" class="contact gaming-contact">
+            <div class="container">
+                <div class="section-header gaming-header">
+                    <h2 class="section-title gaming-section-title">
+                        <span class="title-icon"><i class="fas fa-terminal"></i></span>
+                        UNIRSE_AL_EQUIPO
+                    </h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="contact-content gaming-contact-content">
+                    <div class="contact-info gaming-contact-info">
+                        <div class="contact-terminal">
+                            <div class="terminal-header">
+                                <span class="terminal-title">contacto.exe</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="command-line">
+                                    <span class="prompt">></span> 
+                                    <span class="text">¿Listo para el siguiente nivel?</span>
+                                </div>
+                                <div class="command-line">
+                                    <span class="prompt">></span> 
+                                    <span class="text">Hablemos de tu proyecto épico...</span>
+                                </div>
+                                
+                                <div class="contact-details">
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <div>
+                                            <span class="label">EMAIL</span>
+                                            <span class="value">hernan.mm2014@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <div>
+                                            <span class="label">UBICACIÓN</span>
+                                            <span class="value">Olivos, Buenos Aires</span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone"></i>
+                                        <div>
+                                            <span class="label">TELÉFONO</span>
+                                            <span class="value">+54 11 6158-4909</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cv-section">
+                                    <div class="command-line">
+                                        <span class="prompt">></span> 
+                                        <span class="text">Descarga mi stats completos:</span>
+                                    </div>
+                                    <div class="cv-buttons gaming-cv-buttons">
+                                        <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
+                                            <i class="fas fa-download"></i>
+                                            DESCARGAR CV
+                                        </a>
+                                        <button class="btn gaming-btn secondary" onclick="showCVModal()">
+                                            <i class="fas fa-eye"></i>
+                                            VER CV
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form gaming-contact-form">
+                        <div class="form-terminal">
+                            <div class="terminal-header">
+                                <span class="terminal-title">mensaje_nuevo.exe</span>
+                            </div>
+                            <form id="contactForm" class="gaming-form">
+                                <div class="form-group gaming-form-group">
+                                    <label for="name" class="form-label">
+                                        <i class="fas fa-user"></i>
+                                        NOMBRE_JUGADOR
+                                    </label>
+                                    <input type="text" id="name" name="name" required class="pixel-input">
+                                </div>
+                                <div class="form-group gaming-form-group">
+                                    <label for="email" class="form-label">
+                                        <i class="fas fa-envelope"></i>
+                                        EMAIL
+                                    </label>
+                                    <input type="email" id="email" name="email" required class="pixel-input">
+                                </div>
+                                <div class="form-group gaming-form-group">
+                                    <label for="subject" class="form-label">
+                                        <i class="fas fa-tag"></i>
+                                        ASUNTO
+                                    </label>
+                                    <input type="text" id="subject" name="subject" required class="pixel-input">
+                                </div>
+                                <div class="form-group gaming-form-group">
+                                    <label for="message" class="form-label">
+                                        <i class="fas fa-comment"></i>
+                                        MENSAJE
+                                    </label>
+                                    <textarea id="message" name="message" rows="5" required class="pixel-textarea"></textarea>
+                                </div>
+                                <button type="submit" class="btn gaming-btn primary btn-full">
+                                    <i class="fas fa-paper-plane"></i>
+                                    ENVIAR_MENSAJE
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Gaming -->
+        <footer class="footer gaming-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-text">
+                        <p>&copy; 2024 HERNÁN_MM - LEVEL <span id="currentYear"></span> UNLOCKED</p>
+                    </div>
+                    <div class="footer-social gaming-social">
+                        <a href="https://github.com/Hernan-mm" target="_blank" class="social-link gaming-social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hernanmm" target="_blank" class="social-link gaming-social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://hernan-mm.github.io" target="_blank" class="social-link gaming-social-link">
+                            <i class="fas fa-gamepad"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Modal CV Gaming Mejorado -->
+        <div id="cvModal" class="modal gaming-modal">
+            <div class="modal-content gaming-modal-content cv-viewer-modal">
+                <div class="modal-header">
+                    <div class="header-left">
+                        <i class="fas fa-file-code"></i>
+                        <h3>CV_VIEWER.exe</h3>
+                    </div>
+                    <span class="close" onclick="closeCVModal()">&times;</span>
+                </div>
+                
+                <div class="cv-viewer-container">
+                    <!-- Marco gamer alrededor del PDF -->
+                    <div class="gamer-frame">
+                        <div class="frame-border frame-top">
+                            <div class="pixel-corner top-left"></div>
+                            <div class="pixel-corner top-right"></div>
+                        </div>
+                        
+                        <div class="frame-content">
+                            <div class="pdf-container">
+                                <div id="pdfViewer" class="pdf-viewer">
+                                     <iframe 
+                                     id="pdfFrame"
+                                     src="CV/CvHernan25Spr.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
+                                     width="100%" 
+                                     height="100%"
+                                     class="pdf-iframe"
+                                     frameborder="0"
+                                     style="width: 100%; height: 100%; border: none;"
+                                     onload="onPDFLoad()"
+                                     onerror="onPDFError()">
+                                     <p>Tu navegador no soporta la visualización de PDFs. 
+                                     <a href="CV/CvHernan25Spr.pdf" download>Descarga el CV aquí</a>.
+                                     </p>
+                                     </iframe>
+                                    <div class="pdf-overlay"></div>
+                                    <div id="pdfError" class="pdf-error" style="display: none;">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <h3>ERROR AL CARGAR EL CV</h3>
+                                        <p>No se pudo cargar el archivo PDF. Verifica que el archivo exista en la ruta correcta.</p>
+                                        <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
+                                            <i class="fas fa-download"></i>
+                                            DESCARGAR CV DIRECTAMENTE
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Controles gamer mejorados -->
+                            <div class="pdf-controls">
+                                <div class="control-group">
+                                    <button class="control-btn" onclick="zoomOutPDF()">
+                                        <i class="fas fa-search-minus"></i>
+                                    </button>
+                                    <span class="control-label">ZOOM</span>
+                                    <button class="control-btn" onclick="zoomInPDF()">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                    <span id="zoomLevel" class="zoom-level">100%</span>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <button class="control-btn" onclick="fitToWidth()">
+                                        <i class="fas fa-arrows-alt-h"></i>
+                                    </button>
+                                    <span class="control-label">AJUSTAR</span>
+                                    <button class="control-btn" onclick="fitToPage()">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <button class="control-btn" onclick="downloadCV()">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <span class="control-label">DESCARGAR</span>
+                                    <button class="control-btn" onclick="printCV()">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="frame-border frame-bottom">
+                            <div class="pixel-corner bottom-left"></div>
+                            <div class="pixel-corner bottom-right"></div>
+                            <div class="status-bar">
+                                <span id="statusText" class="status-text">CV_LOADING...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <div class="footer-buttons">
+                        <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
+                            <i class="fas fa-download"></i>
+                            DESCARGAR CV ORIGINAL
+                        </a>
+                        <button class="btn gaming-btn secondary" onclick="closeCVModal()">
+                            <i class="fas fa-times"></i>
+                            CERRAR VISOR
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <!-- Contenido del modal -->
-        <div class="modal-content">
-            <!-- Botón de cierre -->
-            <span class="close" onclick="closeModal()">&times;</span>
-            <!-- Contenido de la sección "Sobre Mí" -->
-            <div id="sobre-mi-content" class="hidden">
-                <!-- Contenedor de la foto de perfil -->
-                <div class="profile-container">
-                    <div class="profile-picture">
-                        <img src="Imagenes/FotoPerfil.jpeg" alt="Foto de perfil">
-                    </div>
-                </div>
-                <!-- Texto descriptivo -->
-                <h2>HERNÁN MOREYRA</h2>
-                <p>PROGRAMADOR FULL STACK & UNITY DEVELOPER</p>
-                <p>Con una gran pasión por la tecnología, he invertido los últimos dos años en el aprendizaje de programación y desarrollo web,</p>
-                <p> con un enfoque en la industria de los videojuegos. Busco oportunidades emocionantes para aplicar mi conjunto de habilidades</p> 
-                <p> en un nuevo campo creativo y desafiante.</p>
-          <!-- Footer -->
-    <div class="logo-container">
-        <div class="logo-content">
-            <img src="Imagenes/main-logo-white.webp" alt="Logo" class="footer-logo">
-            <p id="copyright-sobre-mi">&copy; Copyright Hernan MM - 2024</p>
-        </div>
-    </div>
-</div>
-            <!-- Contenido de la sección "Habilidades" -->
-            <div id="habilidades-content" class="hidden">
-                <h2>Habilidades</h2>
-                <h3>TECNOLOGÍAS:</h3>
-                <div class="skills-courses-container">
-                    <!-- Contenedor para la lista de habilidades -->
-                    <div class="skills-list">
-                        <ul>
-                            <li><i class="fab fa-java"></i>Java</li>
-                            <li><i class="fab fa-js"></i>Javascript</li>
-                            <li><i class="fab fa-react"></i>React</li>
-                            <li><i class="fab fa-java"></i>Spring</li>
-                            <li><i class="fab fa-html5"></i>HTML</li>
-                            <li><i class="fab fa-css3-alt"></i>CSS</li>
-                            <li><i class="fab fa-cuttlefish"></i>C#</li>
-                            <li><i class="fab fa-unity"></i>Unity</li>
-                            <li><i class="fas fa-database"></i>MySQL</li>
-                        </ul>
-                    </div>
-                
-                    <!-- Contenedor para la lista de cursos -->
-                    <div class="course-list-container">
-                        <h2>Cursos y Masterclas:</h2>
-                        <!-- Lista de cursos 1 -->
-                        <ul class="course-list">
-                            <li><i class="fas fa-graduation-cap"></i>Curso Fundamentos de Programación (EDteam)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Algoritmo de Programacion(P.A.V)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Fundamentos de la Programacion(Egg)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Introduccion a la Programacion(Argentina Programa)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Primeros Pasos del Desarrollo FrontEnd(Ticmas)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Programacion Web FULL STACK (Egg)</li>
-                        </ul>
-                
-                        <!-- Lista de cursos 2 -->
-                        <ul class="course-list">
-                            <li><i class="fas fa-graduation-cap"></i>Curso Introduccion Unity 3D (Domestika)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Curso Creacion de videojuegos unity3D (P.A.V)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Orientado a la programación en C# en Unity 3D(Fundación Jama)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Taller de Introducción al Desarrollo y Testing de Videojuegos (U.N.R.N.)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Taller de Nuevas Narrativas y Proyectos Transmediales(Pixe)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Curso Desarrollador de Videojuegos(Elerning Total)</li>
-                            <li><i class="fas fa-graduation-cap"></i>Curso Inicial UNITY Developer(UNJU)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>         
-            <!-- Contenido de la sección "Proyectos" -->
-<div id="proyectos-content" class="hidden">
-    <h2>Proyectos :</h2>
-    <!-- Primer proyecto -->
-    <h3> Proyectos Gamer Destacados </h3>
-    <div class="project">
-        <div class="videoContainer">
-            <video src="Videos/ZRush_Proyect.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-        </div>
-        <h3>Proyecto: Z.Rush</h3>
-        <p>¡Bienvenido a Z.Rush, un juego de acción trepidante 
-        donde te enfrentarás a hordas de Zombies en un mundo devastado por una pandemia zombi! 
-        Aquí está lo que necesitas saber:</p>
-        <ul>
-            <li>Género: Shooter en primera persona (FPS).</li>
-            <li>Tema: Supervivencia post-apocalíptica.</li>
-            <li>Plataforma: Desarrollado en Unity utilizando C#.</li>
-            <li>Modelado de Personajes: Hemos utilizado Mixamo para animar y riggear
-            nuestros personajes. Los modelos incluyen tanto armas como zombis.</li>
-            <li>Ambientación Propia: Hemos creado un mundo 
-            post-apocalíptico, La atmósfera es tensa y llena de peligro.</li>
-        </ul>
-        <!--<a href="enlace-al-proyecto">Ver más detalles</a>-->
-    </div>
 
-    <!-- Segundo proyecto -->
-    <h3> Proyectos Gamer Practicas 2D </h3>
-    <div class="project">
-        <div class="videoContainer">
-         <video src="Videos/StarWarsB by Hernan_MM - Google Chrome 2024-04-03 13-08-04.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-        </div>
-        <h3>Practica videojuego 2D</h3>
-        <p>Un juego 2D donde asumes el papel de un valiente guerrero que lucha contra enemigos para sumar puntos</p>
-        <ul>
-            <li>Género: Juego 2D.</li>
-            <li>Plataforma: Desarrollado en Unity utilizando C#.</li>
-        </ul>
-        <!--<a href="enlace-al-proyecto">Ver más detalles</a>-->
-    </div>
-    
-    <!-- Tercer proyecto -->
-    <div class="project">
-        <div class="videoContainer">
-         <video src="Videos/ProyectoRun.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-        </div>
-        <h3>Practica 2D Endless Runner</h3>
-        <p>Un juego 2D “endless runner”</p>
-        <ul>
-            <li>Género: Juego 2D.</li>
-            <li>Plataforma: Desarrollado en Unity utilizando C#.</li>
-            <li>Usando  parallax, crea la ilusión de profundidad al mover diferentes capas 
-            de fondo a diferentes velocidades, lo que añade dinamismo visual al juego.</li>
-        </ul>
-        <!--<a href="enlace-al-proyecto">Ver más detalles</a>-->
-    </div>
-
-     <!-- Cuarto proyecto -->
-     <div class="project">
-        <div class="videoContainer">
-         <video src="Videos/Vídeo beat em up.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-        </div>
-        <h3>Practica 2D Videojuego de beat 'em up</h3>
-        <p>Un juego 2D “beat 'em up”</p>
-        <ul>
-            <li>Género: Juego 2D.</li>
-            <li>Plataforma: Desarrollado en Unity utilizando C#.</li>
-            <li> Animaciones Fluidas: Implementa animaciones 
-                para el movimiento lateral, los ataques y saltos. </ul>
-        <!--<a href="enlace-al-proyecto">Ver más detalles</a>-->
-    </div>
-
-    <!-- Proyectos Web1 -->
-    <h3> Proyectos Desarrollo Web </h3>
-    <div class="project">
-        <div class="videoContainer">
-            <video src="Videos/ProyectoBarberia.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-        </div>
-        <h3>Proyecto: Barberia</h3>
-        <p>La página web para la Barbería es un diseño moderno y funcional que presenta servicios, 
-            ubicación y formas de contacto de manera clara y accesible. Con una estructura organizada y 
-            un diseño atractivo, ofrece una experiencia de usuario óptima tanto en dispositivos de escritorio 
-            como móviles. Con contenido conciso y visualmente atractivo, el sitio web destaca por su navegación 
-            intuitiva y su atención a los detalles, lo que lo convierte en una destacada adición al portafolio.</p>
-    </div>
-     <!-- Proyectos Web2-->
-     <h3> Proyectos Desarrollo Web </h3>
-     <div class="project">
-         <div class="videoContainer">
-             <video src="Videos/ProyectoNumeroSecreto.mp4" alt="Captura de pantalla del proyecto" onclick="expandVideo(this)"></video>
-         </div>
-         <h3>Proyecto: Numero Secreto</h3>
-         <p>Esta página web presenta un juego interactivo llamado "Juego del número secreto".
-         Los usuarios intentan adivinar un número entre 1 y 10. La interfaz incluye un campo de 
-         entrada y botones para intentar adivinar y reiniciar el juego. El diseño refleja el tema del juego 
-         con elementos visuales relacionados con el código informático. El código JavaScript controla 
-         la lógica del juego, mientras que los estilos CSS dan formato a la interfaz.</p>
-     </div>
-</div>
-            <!-- Contenido de la sección "Contacto" -->
-<div id="contacto-content" class="hidden">
-    <!-- Título de la sección -->
-    <h2>Contacto</h2>
-   
-    <!-- Lista de enlaces -->
-    <p class="contacto-p">Contanto por LinkedIn</p>
-    <div class="contact-item">
-        <i class="fab fa-linkedin"></i>
-        <span><a href="https://www.linkedin.com/in/hernanmoreyra-75764b154" target="_blank">LinkedIn</a></span>
-    </div>
-    <p class="contacto-p">Podes descargar mi CV:</p>
-    <div class="contact-item">
-        <i class="far fa-file-pdf"></i>
-        <span><a href="CV/cv Hernán.pdf" download>Descargar CV (PDF)</a></span>
-    </div>
-    
-       
-    <!-- Información de contacto adicional -->
-    <div class="contact-info">
-        <p class="contacto-p">Otros medio de Contacto:</p>
-        <!-- Icono de WhatsApp -->
-        <div class="contact-item">
-            <i class="fab fa-whatsapp"></i>
-            <span>1161484909</span> <!-- Reemplaza con tu número de teléfono -->
-        </div>
-        <!-- Icono de Gmail -->
-        <div class="contact-item">
-            <i class="far fa-envelope"></i>
-            <span><a href="mailto:hernan.mm2014@gmail.com">hernan.mm2014@gmail.com</a></span> 
-        </div>
-        <!-- Contenedor del logo -->
-    <div class="logo-container-contacto">
-        <!-- Logo -->
-        <img src="Imagenes/main-logo-white.webp" alt="Logo" class="logo">
-    </div>
-    </div>
-</div>
-    </div>
-    <!-- Enlace al archivo JavaScript -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
