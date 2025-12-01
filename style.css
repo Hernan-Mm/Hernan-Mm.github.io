@@ -1,11 +1,11 @@
-/* ============================================
-   PORTFOLIO GAMER - STYLES UPDATED
-   Fecha: 2024
-   Cambios realizados:
-   1. Mejora de legibilidad en sección "SOBRE MÍ"
-   2. Optimización para reproducción de videos en móvil
-   3. Mejoras en visor de CV para móviles
-   ============================================ */
+/* 
+  Archivo: style.css
+  Modificaciones realizadas:
+  - TEXTO ESPECÍFICO en amarillo pixel solo en los 4 párrafos de "Sobre Mí"
+  - Palabras específicas en verde dentro del texto amarillo
+  - Todos los demás títulos restaurados a su estilo verde original
+  - Mejor legibilidad y contraste
+*/
 
 /* ===== VARIABLES GAMER ===== */
 :root {
@@ -15,7 +15,7 @@
     --neon-pink: #ff0066;
     --neon-purple: #bb00ff;
     --neon-cyan: #00ffff;
-    --neon-yellow: #ffff00;
+    --neon-yellow: #ffd800; /* Para el texto específico */
     
     /* Colores fondo gaming */
     --bg-dark: #0a0a0a;
@@ -25,13 +25,13 @@
     
     /* Textos gaming - MEJORADO CONTRASTE */
     --text-primary: #ffffff;
-    --text-secondary: #e0e0e0; /* Más claro para mejor legibilidad */
+    --text-secondary: #e0e0e0;
     --text-neon: var(--neon-green);
     --text-glow: 0 0 10px currentColor;
     
     /* Nuevos colores para mejor accesibilidad */
-    --text-contrast: #f8f8f8; /* Texto de alto contraste */
-    --text-highlight: #4affb3; /* Resaltado verde más suave */
+    --text-contrast: #f8f8f8;
+    --text-highlight: #4affb3;
     
     /* Bordes y efectos */
     --border-glow: 0 0 15px var(--neon-green);
@@ -42,6 +42,86 @@
     --font-primary: 'Share Tech Mono', monospace;
     --font-accent: 'Orbitron', sans-serif;
     --font-pixel: 'Press Start 2P', cursive;
+}
+
+/* ===== TEXTO ESPECÍFICO AMARILLO PIXEL PARA SECCIÓN SOBRE MÍ ===== */
+/* Solo aplica a los 4 párrafos específicos mencionados */
+.about .console-text .command-line .pixel-text-gamer {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(0.65rem, 1.3vw, 0.85rem);
+    color: #ffd800;
+    text-shadow:
+        0 0 4px rgba(255, 216, 0, 0.9),
+        0 0 8px rgba(255, 216, 0, 0.6),
+        0 0 12px rgba(255, 216, 0, 0.4);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    padding: 0.3rem 0;
+    animation: pixelGlow 3s ease-in-out infinite;
+}
+
+/* Efecto de brillo intermitente suave */
+@keyframes pixelGlow {
+    0%, 100% { 
+        opacity: 0.95;
+        text-shadow: 
+            0 0 4px rgba(255, 216, 0, 0.9),
+            0 0 8px rgba(255, 216, 0, 0.6);
+    }
+    50% { 
+        opacity: 1;
+        text-shadow: 
+            0 0 6px rgba(255, 216, 0, 1),
+            0 0 12px rgba(255, 216, 0, 0.8);
+    }
+}
+
+/* Palabras específicas en VERDE dentro del texto amarillo */
+.about .console-text .command-line .pixel-text-gamer .pixel-highlight-green {
+    color: var(--neon-green) !important;
+    text-shadow: 
+        0 0 5px rgba(0, 255, 136, 0.9),
+        0 0 10px rgba(0, 255, 136, 0.6) !important;
+    font-weight: normal;
+    animation: greenGlow 2s ease-in-out infinite;
+}
+
+@keyframes greenGlow {
+    0%, 100% { 
+        opacity: 1;
+        text-shadow: 
+            0 0 5px rgba(0, 255, 136, 0.9),
+            0 0 10px rgba(0, 255, 136, 0.6);
+    }
+    50% { 
+        opacity: 0.9;
+        text-shadow: 
+            0 0 7px rgba(0, 255, 136, 1),
+            0 0 14px rgba(0, 255, 136, 0.8);
+    }
+}
+
+/* Mantener "gamer" en verde dentro del texto amarillo */
+.about .console-text .command-line .pixel-text-gamer .gamer-accent-small {
+    color: var(--neon-green) !important;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.7) !important;
+}
+
+/* Mejorar legibilidad en móviles */
+@media (max-width: 768px) {
+    .about .console-text .command-line .pixel-text-gamer {
+        font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about .console-text .command-line .pixel-text-gamer {
+        font-size: 0.6rem;
+        line-height: 1.5;
+    }
 }
 
 /* ===== RESET Y ESTILOS BASE ===== */
@@ -517,9 +597,7 @@ body {
     color: var(--neon-green);
 }
 
-/* ===== CLASES NUEVAS PARA MEJORAR LEGIBILIDAD ===== */
-
-/* FIX: Clase para acento gamer con mejor contraste y responsive */
+/* Clases para mejor legibilidad */
 .gamer-accent {
     font-family: var(--font-pixel);
     font-size: clamp(1rem, 4vw, 2rem);
@@ -535,7 +613,6 @@ body {
     50% { opacity: 0.8; }
 }
 
-/* FIX: Versión más pequeña para textos dentro de párrafos */
 .gamer-accent-small {
     font-family: var(--font-pixel);
     font-size: 0.9em;
@@ -544,7 +621,6 @@ body {
     padding: 0 0.2rem;
 }
 
-/* FIX: Texto resaltado para mejor legibilidad */
 .highlight-text {
     color: var(--text-highlight);
     font-weight: bold;
@@ -552,27 +628,23 @@ body {
 }
 
 /* ===== MEJORAS PARA SECCIÓN "SOBRE MÍ" ===== */
-/* FIX: Mejor contraste para texto en consola */
 .console-text {
-    background: var(--bg-terminal);
-    border: 1px solid var(--neon-green);
+    background: rgba(15, 25, 20, 0.95);
+    border: 2px solid var(--neon-green);
     padding: 2rem;
     margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
 }
 
-.console-text .text {
-    /* FIX: Color de texto con alto contraste para accesibilidad AA */
+/* El resto del texto en la consola (no los 4 párrafos específicos) */
+.console-text .text:not(.pixel-text-gamer) {
     color: var(--text-contrast) !important;
     line-height: 1.8;
-    
-    /* FIX: Sombra de texto para mejor legibilidad sobre fondos oscuros */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-    
-    /* FIX: Mejor peso de fuente */
     font-weight: 400;
 }
 
-/* FIX: Estilos específicos para command-line en about */
 .command-line {
     margin-bottom: 1.2rem;
     display: flex;
@@ -588,13 +660,6 @@ body {
     margin-right: 10px;
     flex-shrink: 0;
     font-weight: bold;
-}
-
-/* FIX: Fondo ligeramente más claro para mejor contraste */
-.console-text {
-    background: rgba(10, 20, 15, 0.95);
-    border: 2px solid var(--neon-green);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
 }
 
 /* ===== NAVEGACIÓN GAMER ===== */
@@ -1161,18 +1226,15 @@ body {
     position: relative;
 }
 
-/* FIX: Atributos de video mejorados para móvil */
 .project-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border: 2px solid var(--neon-green);
     background: var(--bg-terminal);
-    /* FIX: Mejora para iOS */
     -webkit-touch-callout: none;
 }
 
-/* FIX: Overlay mejorado para interacción táctil */
 .video-overlay {
     position: absolute;
     top: 0;
@@ -1186,7 +1248,6 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease;
     z-index: 10;
-    /* FIX: Permitir eventos táctiles en todo el overlay */
     pointer-events: auto;
     cursor: pointer;
 }
@@ -1195,7 +1256,6 @@ body {
     opacity: 1;
 }
 
-/* FIX: Botón de play más grande en móvil */
 .play-button {
     width: 60px;
     height: 60px;
@@ -1210,7 +1270,6 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 15;
-    /* FIX: Mejorar área táctil */
     padding: 0;
     outline: none;
 }
@@ -1220,7 +1279,6 @@ body {
     box-shadow: 0 0 20px var(--neon-green);
 }
 
-/* FIX: Fallback para móviles cuando el video no se reproduce */
 .mobile-fallback {
     position: absolute;
     top: 0;
@@ -1243,13 +1301,12 @@ body {
     color: var(--neon-pink);
 }
 
-/* FIX: Estilos para enlaces de fallback */
 .fallback-link {
     display: inline-flex !important;
     margin-top: 0.5rem;
 }
 
-/* Carrusel de videos - MEJORADO PARA MÓVIL */
+/* Carrusel de videos */
 .video-carousel {
     position: relative;
     width: 100%;
@@ -1281,7 +1338,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
-    z-index: 25; /* Por encima de overlays y videos */
+    z-index: 25;
 }
 
 .carousel-btn {
@@ -1297,8 +1354,7 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     font-size: 0.8rem;
-    z-index: 30; /* Por encima de todo */
-    /* FIX: Mejorar área táctil */
+    z-index: 30;
     padding: 0;
     outline: none;
 }
@@ -1309,7 +1365,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Indicadores de carrusel */
 .carousel-indicators {
     position: absolute;
     bottom: 10px;
@@ -1328,7 +1383,6 @@ body {
     border: 1px solid var(--neon-green);
     cursor: pointer;
     transition: all 0.3s ease;
-    /* FIX: Mejorar área táctil */
     padding: 0;
     outline: none;
 }
@@ -1338,7 +1392,6 @@ body {
     transform: scale(1.2);
 }
 
-/* Efectos hover mejorados para tarjetas con videos */
 .gaming-project-card:hover .project-video {
     border-color: var(--neon-cyan);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
@@ -1524,7 +1577,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== VISOR DE PDF CON PDF.JS - MEJORADO PARA MÓVILES ===== */
+/* ===== VISOR DE PDF CON PDF.JS ===== */
 .gaming-modal {
     display: none;
     position: fixed;
@@ -1668,7 +1721,7 @@ body {
     overflow: hidden;
 }
 
-/* FIX: Contenedor del PDF mejorado para PDF.js */
+/* Contenedor del PDF */
 .pdf-container {
     position: relative;
     background: white;
@@ -1678,10 +1731,9 @@ body {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--neon-green);
-    overflow: auto; /* Cambiado de hidden a auto para scroll */
+    overflow: auto;
 }
 
-/* FIX: Contenedor para PDF.js */
 .pdf-canvas-container {
     width: 100%;
     height: 100%;
@@ -1700,7 +1752,6 @@ body {
     background: white;
 }
 
-/* FIX: Controles para PDF.js */
 .pdf-js-controls {
     display: flex;
     align-items: center;
@@ -1721,7 +1772,6 @@ body {
     text-align: center;
 }
 
-/* FIX: Contenedor para iframe */
 .pdf-iframe-container {
     width: 100%;
     height: 100%;
@@ -1762,7 +1812,6 @@ body {
     z-index: 1;
 }
 
-/* FIX: Mensaje de error mejorado para PDF */
 .pdf-error {
     position: absolute;
     top: 0;
@@ -1816,7 +1865,6 @@ body {
     justify-content: center;
 }
 
-/* FIX: Cargador para PDF.js */
 .pdf-loading {
     position: absolute;
     top: 0;
@@ -1842,7 +1890,6 @@ body {
     font-family: var(--font-primary);
 }
 
-/* FIX: Controles gamer mejorados */
 .pdf-controls {
     display: flex;
     justify-content: space-between;
@@ -1873,7 +1920,6 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     font-size: 0.9rem;
-    /* FIX: Mejorar área táctil */
     padding: 0;
     outline: none;
 }
@@ -2028,9 +2074,8 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ===== RESPONSIVE GAMER - MEJORADO ===== */
+/* ===== RESPONSIVE GAMER ===== */
 @media (max-width: 768px) {
-    /* FIX: Mejoras generales para móvil */
     .gaming-contact-content {
         grid-template-columns: 1fr;
     }
@@ -2088,20 +2133,18 @@ body {
         gap: 1rem;
     }
     
-    /* FIX: Mejoras para videos en móvil */
+    /* Mejoras para videos en móvil */
     .gaming-project-image {
         height: 200px;
     }
     
     .play-button {
-        /* FIX: Botón más grande para mejor interacción táctil */
         width: 70px;
         height: 70px;
         font-size: 1.8rem;
     }
     
     .video-overlay {
-        /* FIX: Asegurar que el overlay sea completamente táctil */
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
     }
@@ -2126,7 +2169,7 @@ body {
         height: 12px;
     }
     
-    /* FIX: Mejoras para modal de CV en móvil */
+    /* Mejoras para modal de CV en móvil */
     .cv-viewer-modal {
         width: 98%;
         height: 95vh;
@@ -2161,13 +2204,13 @@ body {
         align-items: flex-start;
     }
     
-    /* FIX: Mejor contraste para texto en móvil */
-    .console-text .text {
+    /* Mejor contraste para texto en móvil */
+    .console-text .text:not(.pixel-text-gamer) {
         font-size: 0.95rem;
         line-height: 1.7;
     }
     
-    /* FIX: Ajustes para PDF.js en móvil */
+    /* Ajustes para PDF.js en móvil */
     .pdf-js-controls {
         flex-direction: column;
         gap: 10px;
@@ -2184,14 +2227,13 @@ body {
         justify-content: center;
     }
     
-    /* FIX: Mostrar nota para móviles en contacto */
+    /* Mostrar nota para móviles en contacto */
     .mobile-note {
         display: block !important;
     }
 }
 
 @media (max-width: 480px) {
-    /* FIX: Ajustes para pantallas muy pequeñas */
     .gaming-title {
         font-size: 1.5rem;
     }
@@ -2214,16 +2256,16 @@ body {
         padding: 1rem;
     }
     
-    /* FIX: Mejor legibilidad en móviles pequeños */
+    /* Mejor legibilidad en móviles pequeños */
     .console-text {
         padding: 1.5rem;
     }
     
-    .console-text .text {
+    .console-text .text:not(.pixel-text-gamer) {
         font-size: 0.9rem;
     }
     
-    /* FIX: Modal más compacto en móviles pequeños */
+    /* Modal más compacto en móviles pequeños */
     .cv-viewer-modal {
         height: 85vh;
     }

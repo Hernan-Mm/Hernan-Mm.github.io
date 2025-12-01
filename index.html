@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hernán MM - Dev Gamer</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Fuentes Gaming Mejoradas -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fuentes gaming -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <!-- PDF.js para visualización de CV en móviles -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="gamer-theme">
     <!-- Pantalla de Inicio Gameboy -->
@@ -240,7 +244,7 @@
             </div>
         </section>
 
-        <!-- Sección Sobre Mí Gaming - CON MEJORAS DE LEGIBILIDAD -->
+        <!-- Sección Sobre Mí Gaming - TEXTO ESPECÍFICO EN AMARILLO PIXEL -->
         <section id="about" class="about gaming-about">
             <div class="container">
                 <div class="section-header gaming-header">
@@ -254,21 +258,28 @@
                 <div class="about-content gaming-about-content">
                     <div class="about-text gaming-about-text">
                         <div class="console-text">
+                            <!-- PRIMER PÁRRAFO CON TEXTO ESPECÍFICO EN AMARILLO -->
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Soy <span class="highlight-text">Desarrollador Full Stack</span> con una base sólida en atención al cliente y gastronomía: dos áreas que me enseñaron algo que muchos devs pasan por alto — cómo entender a las personas y crear soluciones que realmente sirvan.</span>
+                                <span class="pixel-text-gamer">Soy <span class="pixel-highlight-green">Desarrollador Full Stack</span> con una base sólida en atención al cliente y gastronomía: dos áreas que me enseñaron algo que muchos devs pasan por alto — cómo entender a las personas y crear soluciones que realmente sirvan.</span>
                             </p>
+                            
+                            <!-- SEGUNDO PÁRRAFO CON TEXTO ESPECÍFICO EN AMARILLO -->
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Mi camino en tecnología nació desde el mundo <span class="gamer-accent-small">gamer</span>: crecí explorando sistemas, mods, interfaces y preguntándome cómo funcionaban por dentro. Esa curiosidad se transformó en proyectos reales y en una mentalidad creativa orientada a experiencias digitales fluidas, funcionales y divertidas.</span>
+                                <span class="pixel-text-gamer">Mi camino en tecnología nació desde el mundo <span class="gamer-accent-small">gamer</span>: crecí explorando sistemas, mods, interfaces y preguntándome cómo funcionaban por dentro. Esa curiosidad se transformó en proyectos reales y en una mentalidad creativa orientada a experiencias digitales fluidas, funcionales y divertidas.</span>
                             </p>
+                            
+                            <!-- TERCER PÁRRAFO CON TEXTO ESPECÍFICO EN AMARILLO -->
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Me formé en <span class="highlight-text">Egg Programación</span> y <span class="highlight-text">Argentina Programa 4.0</span>, donde aprendí a trabajar en equipo, resolver problemas y manejar tecnologías actuales del desarrollo web. Hoy combino ese conocimiento técnico con mi lado gamer para crear proyectos que tienen propósito, identidad y detalle.</span>
+                                <span class="pixel-text-gamer">Me formé en <span class="pixel-highlight-green">Egg Programación</span> y <span class="pixel-highlight-green">Argentina Programa 4.0</span>, donde aprendí a trabajar en equipo, resolver problemas y manejar tecnologías actuales del desarrollo web. Hoy combino ese conocimiento técnico con mi lado gamer para crear proyectos que tienen propósito, identidad y detalle.</span>
                             </p>
+                            
+                            <!-- CUARTO PÁRRAFO CON TEXTO ESPECÍFICO EN AMARILLO -->
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Cuando no estoy codeando, probablemente estoy jugando, testeando nuevas herramientas o experimentando ideas que después terminan convertidas en proyectos.</span>
+                                <span class="pixel-text-gamer">Cuando no estoy codeando, probablemente estoy jugando, testeando nuevas herramientas o experimentando ideas que después terminan convertidas en proyectos.</span>
                             </p>
                         </div>
                         <div class="about-cta gaming-cta">
@@ -495,7 +506,7 @@
             </div>
         </section>
 
-        <!-- Sección Proyectos Gaming - MEJORADO PARA MÓVILES -->
+        <!-- Sección Proyectos Gaming -->
         <section id="projects" class="projects gaming-projects">
             <div class="container">
                 <div class="section-header gaming-header">
@@ -525,13 +536,14 @@
                         </div>
                         <div class="project-image gaming-project-image">
                             <div class="project-screenshot">
-                                <!-- FIX: Atributos mejorados para móvil -->
+                                <!-- VIDEO MEJORADO PARA MÓVIL -->
                                 <video class="project-video" 
                                        controls 
                                        playsinline 
                                        preload="metadata" 
                                        poster="Videos/poster-unity.jpg"
-                                       aria-label="Video demostrativo de juego Unity">
+                                       aria-label="Video demostrativo de juego Unity"
+                                       data-mobile-fallback="Videos/ZRush_Proyect.mp4">
                                     <source src="Videos/ZRush_Proyect.mp4" type="video/mp4">
                                     <source src="Videos/ZRush_Proyect.webm" type="video/webm">
                                     Tu navegador no soporta el elemento de video.
@@ -597,13 +609,13 @@
                                 <div class="video-carousel">
                                     <!-- Video 1 - Barbería -->
                                     <div class="video-item active">
-                                        <!-- FIX: Atributos mejorados para móvil -->
                                         <video class="project-video" 
                                                controls 
                                                playsinline 
                                                preload="metadata" 
                                                poster="Videos/poster-barberia.jpg"
-                                               aria-label="Video demostrativo de sitio web para barbería">
+                                               aria-label="Video demostrativo de sitio web para barbería"
+                                               data-mobile-fallback="Videos/ProyectoBarberia.mp4">
                                             <source src="Videos/ProyectoBarberia.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
@@ -616,13 +628,13 @@
                                     
                                     <!-- Video 2 - Número Secreto -->
                                     <div class="video-item">
-                                        <!-- FIX: Atributos mejorados para móvil -->
                                         <video class="project-video" 
                                                controls 
                                                playsinline 
                                                preload="metadata" 
                                                poster="Videos/poster-secreto.jpg"
-                                               aria-label="Video demostrativo de juego Número Secreto">
+                                               aria-label="Video demostrativo de juego Número Secreto"
+                                               data-mobile-fallback="Videos/ProyectoNumeroSecreto.mp4">
                                             <source src="Videos/ProyectoNumeroSecreto.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
@@ -643,7 +655,7 @@
                                         </button>
                                     </div>
                                     
-                                    <!-- Indicadores del carrusel (se generan automáticamente con JS) -->
+                                    <!-- Indicadores del carrusel -->
                                 </div>
                             </div>
                         </div>
@@ -693,13 +705,13 @@
                                 <div class="video-carousel">
                                     <!-- Video 1 - Runner -->
                                     <div class="video-item active">
-                                        <!-- FIX: Atributos mejorados para móvil -->
                                         <video class="project-video" 
                                                controls 
                                                playsinline 
                                                preload="metadata" 
                                                poster="Videos/poster-run.jpg"
-                                               aria-label="Video demostrativo de juego Runner">
+                                               aria-label="Video demostrativo de juego Runner"
+                                               data-mobile-fallback="Videos/ProyectoRun.mp4">
                                             <source src="Videos/ProyectoRun.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
@@ -712,13 +724,13 @@
                                     
                                     <!-- Video 2 - Beat'em Up -->
                                     <div class="video-item">
-                                        <!-- FIX: Atributos mejorados para móvil -->
                                         <video class="project-video" 
                                                controls 
                                                playsinline 
                                                preload="metadata" 
                                                poster="Videos/poster-beatemup.jpg"
-                                               aria-label="Video demostrativo de juego Beat'em Up">
+                                               aria-label="Video demostrativo de juego Beat'em Up"
+                                               data-mobile-fallback="Videos/Vídeo beat em up.mp4">
                                             <source src="Videos/Vídeo beat em up.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
@@ -826,12 +838,12 @@
                                         <span class="text">Descarga mis stats completos:</span>
                                     </div>
                                     <div class="cv-buttons gaming-cv-buttons">
-                                        <!-- Botón DESCARGAR - siempre disponible -->
+                                        <!-- Botón DESCARGAR -->
                                         <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
                                             <i class="fas fa-download"></i>
                                             DESCARGAR CV
                                         </a>
-                                        <!-- Botón VER CV - usa PDF.js en móviles -->
+                                        <!-- Botón VER CV -->
                                         <button class="btn gaming-btn secondary" onclick="showCVModal()" id="viewCVButton">
                                             <i class="fas fa-eye"></i>
                                             VER CV
@@ -925,7 +937,6 @@
                 </div>
                 
                 <div class="cv-viewer-container">
-                    <!-- Marco gamer alrededor del PDF -->
                     <div class="gamer-frame">
                         <div class="frame-border frame-top">
                             <div class="pixel-corner top-left"></div>
@@ -933,7 +944,6 @@
                         </div>
                         
                         <div class="frame-content">
-                            <!-- Contenedor principal para PDF -->
                             <div class="pdf-container">
                                 <!-- Canvas para PDF.js -->
                                 <div id="pdfCanvasContainer" class="pdf-canvas-container" style="display: none;">
