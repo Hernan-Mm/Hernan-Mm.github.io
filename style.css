@@ -1,3 +1,12 @@
+/* ============================================
+   PORTFOLIO GAMER - STYLES UPDATED
+   Fecha: 2024
+   Cambios realizados:
+   1. Mejora de legibilidad en sección "SOBRE MÍ"
+   2. Optimización para reproducción de videos en móvil
+   3. Mejoras en visor de CV para móviles
+   ============================================ */
+
 /* ===== VARIABLES GAMER ===== */
 :root {
     /* Colores Gaming */
@@ -14,11 +23,15 @@
     --bg-card: #1a1a1a;
     --bg-terminal: #000000;
     
-    /* Textos gaming */
+    /* Textos gaming - MEJORADO CONTRASTE */
     --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
+    --text-secondary: #e0e0e0; /* Más claro para mejor legibilidad */
     --text-neon: var(--neon-green);
     --text-glow: 0 0 10px currentColor;
+    
+    /* Nuevos colores para mejor accesibilidad */
+    --text-contrast: #f8f8f8; /* Texto de alto contraste */
+    --text-highlight: #4affb3; /* Resaltado verde más suave */
     
     /* Bordes y efectos */
     --border-glow: 0 0 15px var(--neon-green);
@@ -504,6 +517,86 @@ body {
     color: var(--neon-green);
 }
 
+/* ===== CLASES NUEVAS PARA MEJORAR LEGIBILIDAD ===== */
+
+/* FIX: Clase para acento gamer con mejor contraste y responsive */
+.gamer-accent {
+    font-family: var(--font-pixel);
+    font-size: clamp(1rem, 4vw, 2rem);
+    color: var(--neon-green);
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.35);
+    display: inline-block;
+    margin-left: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* FIX: Versión más pequeña para textos dentro de párrafos */
+.gamer-accent-small {
+    font-family: var(--font-pixel);
+    font-size: 0.9em;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    padding: 0 0.2rem;
+}
+
+/* FIX: Texto resaltado para mejor legibilidad */
+.highlight-text {
+    color: var(--text-highlight);
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(74, 255, 179, 0.3);
+}
+
+/* ===== MEJORAS PARA SECCIÓN "SOBRE MÍ" ===== */
+/* FIX: Mejor contraste para texto en consola */
+.console-text {
+    background: var(--bg-terminal);
+    border: 1px solid var(--neon-green);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.console-text .text {
+    /* FIX: Color de texto con alto contraste para accesibilidad AA */
+    color: var(--text-contrast) !important;
+    line-height: 1.8;
+    
+    /* FIX: Sombra de texto para mejor legibilidad sobre fondos oscuros */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    
+    /* FIX: Mejor peso de fuente */
+    font-weight: 400;
+}
+
+/* FIX: Estilos específicos para command-line en about */
+.command-line {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.command-line:last-child {
+    margin-bottom: 0;
+}
+
+.prompt {
+    color: var(--neon-green);
+    margin-right: 10px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+/* FIX: Fondo ligeramente más claro para mejor contraste */
+.console-text {
+    background: rgba(10, 20, 15, 0.95);
+    border: 2px solid var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
 /* ===== NAVEGACIÓN GAMER ===== */
 .gaming-nav {
     background: rgba(10, 10, 10, 0.95);
@@ -856,6 +949,11 @@ body {
     color: var(--neon-green);
     text-shadow: var(--text-glow);
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .title-icon {
@@ -881,25 +979,6 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
     align-items: start;
-}
-
-.console-text {
-    background: var(--bg-terminal);
-    border: 1px solid var(--neon-green);
-    padding: 2rem;
-    margin-bottom: 2rem;
-}
-
-.command-line {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
-}
-
-.prompt {
-    color: var(--neon-green);
-    margin-right: 10px;
-    flex-shrink: 0;
 }
 
 .about-features {
@@ -1069,7 +1148,7 @@ body {
     color: var(--neon-yellow);
 }
 
-/* ===== ESTILOS PARA VIDEOS EN PROYECTOS - MEJORADOS ===== */
+/* ===== ESTILOS MEJORADOS PARA VIDEOS EN MÓVIL ===== */
 .gaming-project-image {
     height: 250px;
     position: relative;
@@ -1082,14 +1161,18 @@ body {
     position: relative;
 }
 
+/* FIX: Atributos de video mejorados para móvil */
 .project-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border: 2px solid var(--neon-green);
     background: var(--bg-terminal);
+    /* FIX: Mejora para iOS */
+    -webkit-touch-callout: none;
 }
 
+/* FIX: Overlay mejorado para interacción táctil */
 .video-overlay {
     position: absolute;
     top: 0;
@@ -1103,12 +1186,16 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease;
     z-index: 10;
+    /* FIX: Permitir eventos táctiles en todo el overlay */
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .project-screenshot:hover .video-overlay {
     opacity: 1;
 }
 
+/* FIX: Botón de play más grande en móvil */
 .play-button {
     width: 60px;
     height: 60px;
@@ -1123,14 +1210,46 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 15;
+    /* FIX: Mejorar área táctil */
+    padding: 0;
+    outline: none;
 }
 
-.play-button:hover {
+.play-button:hover, .play-button:focus {
     transform: scale(1.1);
     box-shadow: 0 0 20px var(--neon-green);
 }
 
-/* Carrusel de videos - MEJORADO */
+/* FIX: Fallback para móviles cuando el video no se reproduce */
+.mobile-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 1rem;
+    z-index: 20;
+}
+
+.mobile-fallback p {
+    margin-bottom: 1rem;
+    color: var(--neon-pink);
+}
+
+/* FIX: Estilos para enlaces de fallback */
+.fallback-link {
+    display: inline-flex !important;
+    margin-top: 0.5rem;
+}
+
+/* Carrusel de videos - MEJORADO PARA MÓVIL */
 .video-carousel {
     position: relative;
     width: 100%;
@@ -1162,7 +1281,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
-    z-index: 20; /* Por encima de los overlays y videos */
+    z-index: 25; /* Por encima de overlays y videos */
 }
 
 .carousel-btn {
@@ -1178,10 +1297,13 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     font-size: 0.8rem;
-    z-index: 25; /* Por encima de todo */
+    z-index: 30; /* Por encima de todo */
+    /* FIX: Mejorar área táctil */
+    padding: 0;
+    outline: none;
 }
 
-.carousel-btn:hover {
+.carousel-btn:hover, .carousel-btn:focus {
     background: var(--neon-green);
     box-shadow: 0 0 10px var(--neon-green);
     transform: scale(1.1);
@@ -1206,6 +1328,9 @@ body {
     border: 1px solid var(--neon-green);
     cursor: pointer;
     transition: all 0.3s ease;
+    /* FIX: Mejorar área táctil */
+    padding: 0;
+    outline: none;
 }
 
 .carousel-indicator.active {
@@ -1242,6 +1367,7 @@ body {
 .gaming-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .gaming-link {
@@ -1398,7 +1524,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== VISOR DE PDF GAMER MEJORADO ===== */
+/* ===== VISOR DE PDF CON PDF.JS - MEJORADO PARA MÓVILES ===== */
 .gaming-modal {
     display: none;
     position: fixed;
@@ -1407,7 +1533,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(5px);
 }
 
@@ -1542,7 +1668,7 @@ body {
     overflow: hidden;
 }
 
-/* Contenedor del PDF mejorado */
+/* FIX: Contenedor del PDF mejorado para PDF.js */
 .pdf-container {
     position: relative;
     background: white;
@@ -1552,7 +1678,54 @@ body {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--neon-green);
-    overflow: hidden;
+    overflow: auto; /* Cambiado de hidden a auto para scroll */
+}
+
+/* FIX: Contenedor para PDF.js */
+.pdf-canvas-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#pdfCanvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background: white;
+}
+
+/* FIX: Controles para PDF.js */
+.pdf-js-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--neon-green);
+    width: 100%;
+    margin-top: 10px;
+}
+
+.page-info {
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* FIX: Contenedor para iframe */
+.pdf-iframe-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .pdf-viewer {
@@ -1589,7 +1762,7 @@ body {
     z-index: 1;
 }
 
-/* Mensaje de error para PDF */
+/* FIX: Mensaje de error mejorado para PDF */
 .pdf-error {
     position: absolute;
     top: 0;
@@ -1620,11 +1793,56 @@ body {
 
 .pdf-error p {
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     max-width: 400px;
 }
 
-/* Controles gamer mejorados */
+.pdf-error ul {
+    text-align: left;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 400px;
+    font-size: 0.9rem;
+}
+
+.pdf-error li {
+    margin-bottom: 0.5rem;
+}
+
+.error-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* FIX: Cargador para PDF.js */
+.pdf-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-terminal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.loading-spinner {
+    font-size: 3rem;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+}
+
+.pdf-loading p {
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+}
+
+/* FIX: Controles gamer mejorados */
 .pdf-controls {
     display: flex;
     justify-content: space-between;
@@ -1655,9 +1873,12 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    /* FIX: Mejorar área táctil */
+    padding: 0;
+    outline: none;
 }
 
-.control-btn:hover {
+.control-btn:hover, .control-btn:focus {
     background: var(--neon-green);
     color: var(--bg-dark);
     box-shadow: 0 0 10px var(--neon-green);
@@ -1692,6 +1913,12 @@ body {
 .status-text {
     color: var(--bg-dark);
     font-weight: bold;
+}
+
+.renderer-info {
+    color: var(--bg-dark);
+    font-style: italic;
+    font-size: 0.8rem;
 }
 
 /* Footer del modal */
@@ -1801,8 +2028,9 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ===== RESPONSIVE GAMER ===== */
+/* ===== RESPONSIVE GAMER - MEJORADO ===== */
 @media (max-width: 768px) {
+    /* FIX: Mejoras generales para móvil */
     .gaming-contact-content {
         grid-template-columns: 1fr;
     }
@@ -1821,7 +2049,9 @@ body {
     }
     
     .gaming-section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 0.5rem;
     }
     
     .hero-container {
@@ -1835,6 +2065,18 @@ body {
     
     .gaming-menu {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        padding: 1rem;
+        border-top: 2px solid var(--neon-green);
+    }
+    
+    .gaming-menu.active {
+        display: flex;
     }
     
     .gaming-hamburger {
@@ -1846,6 +2088,45 @@ body {
         gap: 1rem;
     }
     
+    /* FIX: Mejoras para videos en móvil */
+    .gaming-project-image {
+        height: 200px;
+    }
+    
+    .play-button {
+        /* FIX: Botón más grande para mejor interacción táctil */
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    .video-overlay {
+        /* FIX: Asegurar que el overlay sea completamente táctil */
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .carousel-controls {
+        bottom: 5px;
+        padding: 0 5px;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-indicators {
+        bottom: 5px;
+    }
+    
+    .carousel-indicator {
+        width: 12px;
+        height: 12px;
+    }
+    
+    /* FIX: Mejoras para modal de CV en móvil */
     .cv-viewer-modal {
         width: 98%;
         height: 95vh;
@@ -1855,6 +2136,7 @@ body {
     .pdf-controls {
         flex-direction: column;
         gap: 10px;
+        padding: 10px;
     }
     
     .control-group {
@@ -1864,36 +2146,90 @@ body {
     
     .footer-buttons {
         flex-direction: column;
+        width: 100%;
+    }
+    
+    .footer-buttons .gaming-btn {
+        width: 100%;
+        justify-content: center;
     }
     
     .status-bar {
         flex-direction: column;
         gap: 5px;
         font-size: 0.7rem;
+        align-items: flex-start;
     }
     
-    .project-video {
-        height: 200px;
+    /* FIX: Mejor contraste para texto en móvil */
+    .console-text .text {
+        font-size: 0.95rem;
+        line-height: 1.7;
     }
     
-    .carousel-controls {
-        bottom: 5px;
-        padding: 0 5px;
+    /* FIX: Ajustes para PDF.js en móvil */
+    .pdf-js-controls {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 10px;
     }
     
-    .carousel-btn {
-        width: 25px;
-        height: 25px;
-        font-size: 0.7rem;
+    .error-buttons {
+        flex-direction: column;
+        width: 100%;
     }
     
-    .carousel-indicators {
-        bottom: 5px;
+    .error-buttons .gaming-btn {
+        width: 100%;
+        justify-content: center;
     }
     
-    .carousel-indicator {
-        width: 8px;
-        height: 8px;
+    /* FIX: Mostrar nota para móviles en contacto */
+    .mobile-note {
+        display: block !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* FIX: Ajustes para pantallas muy pequeñas */
+    .gaming-title {
+        font-size: 1.5rem;
+    }
+    
+    .gaming-section-title {
+        font-size: 1.5rem;
+    }
+    
+    .play-button {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .gaming-project-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-content {
+        padding: 1rem;
+    }
+    
+    /* FIX: Mejor legibilidad en móviles pequeños */
+    .console-text {
+        padding: 1.5rem;
+    }
+    
+    .console-text .text {
+        font-size: 0.9rem;
+    }
+    
+    /* FIX: Modal más compacto en móviles pequeños */
+    .cv-viewer-modal {
+        height: 85vh;
+    }
+    
+    .modal-header, .modal-footer {
+        padding: 10px 15px;
     }
 }
 
@@ -1929,9 +2265,13 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     line-height: 1;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
-.close:hover {
+.close:hover, .close:focus {
     color: var(--neon-pink);
     transform: scale(1.1);
+    outline: none;
 }

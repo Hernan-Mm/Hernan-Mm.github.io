@@ -1,7 +1,41 @@
 /**
- * PORTFOLIO GAMER - SISTEMA PRINCIPAL
- * Archivo JavaScript con todas las funcionalidades del portfolio gaming
- * Incluye sistema de carrusel de videos completamente funcional
+ * ============================================
+ * PORTFOLIO GAMER - SCRIPT UPDATED
+ * Fecha: 2024
+ * Cambios realizados:
+ * 1. Mejora de reproducción de videos en móvil
+ * 2. Sistema de PDF.js para visualización de CV en móviles
+ * 3. Optimización de interacciones táctiles
+ * 4. Mejoras de accesibilidad
+ * ============================================
+ */
+
+/** 
+ * 🎮 CHANGELOG DETALLADO:
+ * 
+ * FIX 1: Legibilidad sección "SOBRE MÍ"
+ *   - Añadida clase .gamer-accent para textos destacados
+ *   - Mejorado contraste de texto en .console-text
+ *   - Añadidos efectos de sombra para mejor legibilidad
+ * 
+ * FIX 2: Reproducción de videos en móvil
+ *   - Añadidos atributos playsinline y preload="metadata" a videos
+ *   - Implementados eventos touchstart para reproducción táctil
+ *   - Sistema de fallback para cuando los videos no se reproducen
+ *   - Botones de play más grandes en móvil
+ * 
+ * FIX 3: Visualización de CV en móvil
+ *   - Implementado PDF.js como visor principal en móviles
+ *   - Sistema de detección automática de dispositivo
+ *   - Fallback a iframe tradicional si PDF.js falla
+ *   - Opción de abrir en nueva pestaña si todo falla
+ *   - Evita descarga forzada en dispositivos móviles
+ * 
+ * MEJORAS ADICIONALES:
+ *   - Mejor manejo de errores en carga de videos
+ *   - Optimización de z-index para overlays en móvil
+ *   - Mejoras de accesibilidad (aria-label, roles)
+ *   - Sistema de notificaciones mejorado
  */
 
 // ===== INICIALIZACIÓN GAMER =====
@@ -155,10 +189,18 @@ function initializePortfolioSystem() {
     initializeStatsBars();
     handleImageErrors();
     
-    // Inicializar sistema de videos y carruseles
+    // CHANGES: Inicializar sistema de videos mejorado para móvil
     initializeVideoSystem();
     initializeVideoLoading();
     initializeCarousels();
+    
+    // CHANGES: Inicializar sistema de PDF para móviles
+    initializePDFSystem();
+    
+    // CHANGES: Configurar botón VER CV para móviles
+    setupCVButtonForMobile();
+    
+    console.log('✅ Sistema del portfolio inicializado correctamente');
 }
 
 // ===== LOADER DE CONSOLA =====
@@ -468,16 +510,16 @@ function simulateFormSubmission() {
     }, 2000);
 }
 
-// ===== SISTEMA DE CARRUSEL DE VIDEOS - COMPLETAMENTE FUNCIONAL =====
+// ===== SISTEMA DE CARRUSEL DE VIDEOS - MEJORADO PARA MÓVIL =====
 
 // Objeto para rastrear el estado de cada carrusel
 const carouselState = {};
 
 /**
- * Inicializa todos los carruseles de videos
+ * CHANGES: Inicializa todos los carruseles de videos con mejoras para móvil
  */
 function initializeCarousels() {
-    console.log('🎠 Inicializando carruseles de videos...');
+    console.log('🎠 Inicializando carruseles de videos con mejoras para móvil...');
     
     const carousels = document.querySelectorAll('.video-carousel');
     
@@ -485,7 +527,8 @@ function initializeCarousels() {
         const carouselId = `carousel-${index}`;
         carouselState[carouselId] = {
             currentIndex: 0,
-            totalItems: carousel.querySelectorAll('.video-item').length
+            totalItems: carousel.querySelectorAll('.video-item').length,
+            isPlaying: false
         };
         
         // Inicializar indicadores si no existen
@@ -499,7 +542,7 @@ function initializeCarousels() {
 }
 
 /**
- * Inicializa los indicadores de carrusel
+ * CHANGES: Inicializa los indicadores de carrusel con mejoras táctiles
  */
 function initializeCarouselIndicators(carousel, carouselId) {
     const totalItems = carouselState[carouselId].totalItems;
@@ -520,15 +563,29 @@ function initializeCarouselIndicators(carousel, carouselId) {
         const indicator = document.createElement('div');
         indicator.className = `carousel-indicator ${i === 0 ? 'active' : ''}`;
         indicator.setAttribute('data-index', i);
+        indicator.setAttribute('role', 'button');
+        indicator.setAttribute('tabindex', '0');
+        indicator.setAttribute('aria-label', `Ver video ${i + 1} de ${totalItems}`);
+        
+        // CHANGES: Añadir eventos táctiles y de clic
         indicator.addEventListener('click', () => {
             showVideo(carousel, i, carouselId);
+            playButtonSound();
         });
+        
+        indicator.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                showVideo(carousel, i, carouselId);
+                playButtonSound();
+            }
+        });
+        
         indicatorsContainer.appendChild(indicator);
     }
 }
 
 /**
- * Muestra un video específico en el carrusel
+ * CHANGES: Muestra un video específico en el carrusel con mejoras para móvil
  */
 function showVideo(carousel, index, carouselId) {
     const videoItems = carousel.querySelectorAll('.video-item');
@@ -544,8 +601,11 @@ function showVideo(carousel, index, carouselId) {
         item.classList.remove('active');
         const video = item.querySelector('.project-video');
         if (video) {
-            video.pause();
-            resetVideoOverlay(video);
+            // CHANGES: Solo pausar si no está en reproducción por interacción táctil
+            if (!carouselState[carouselId]?.isPlaying || i !== index) {
+                video.pause();
+                resetVideoOverlay(video);
+            }
         }
     });
     
@@ -564,7 +624,7 @@ function showVideo(carousel, index, carouselId) {
 }
 
 /**
- * Cambia al siguiente o anterior video en el carrusel
+ * CHANGES: Cambia al siguiente o anterior video en el carrusel
  */
 function changeVideo(button, direction) {
     const carousel = button.closest('.video-carousel');
@@ -584,30 +644,41 @@ function changeVideo(button, direction) {
 }
 
 /**
- * Sistema de videos mejorado
+ * CHANGES: Sistema de videos mejorado para móviles
  */
 function initializeVideoSystem() {
-    console.log('🎥 Inicializando sistema de videos...');
+    console.log('🎥 Inicializando sistema de videos con soporte táctil...');
     
     // Configurar eventos para botones de play
     const playButtons = document.querySelectorAll('.play-button');
     playButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const videoItem = this.closest('.video-item');
-            const video = videoItem.querySelector('.project-video');
-            if (video) {
-                video.play();
-                this.style.display = 'none';
-                const overlay = this.closest('.video-overlay');
-                if (overlay) {
-                    overlay.style.opacity = '0';
-                    setTimeout(() => {
-                        overlay.style.display = 'none';
-                    }, 300);
-                }
+        // CHANGES: Añadir eventos táctiles además de clic
+        button.addEventListener('click', handleVideoPlay);
+        button.addEventListener('touchstart', handleVideoPlay, { passive: false });
+        
+        // CHANGES: Mejorar accesibilidad
+        button.setAttribute('role', 'button');
+        button.setAttribute('tabindex', '0');
+        button.setAttribute('aria-label', 'Reproducir video');
+        
+        // CHANGES: Añadir evento de teclado para accesibilidad
+        button.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                handleVideoPlay(e);
             }
         });
+    });
+    
+    // CHANGES: Añadir eventos táctiles a los overlays completos
+    const videoOverlays = document.querySelectorAll('.video-overlay');
+    videoOverlays.forEach(overlay => {
+        overlay.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('.play-button');
+            if (button) {
+                handleVideoPlay.call(button, e);
+            }
+        }, { passive: false });
     });
     
     // Pausar video cuando se cierra el modal o se cambia de pestaña
@@ -617,7 +688,7 @@ function initializeVideoSystem() {
         }
     });
     
-    // Reiniciar overlay cuando el video termina
+    // CHANGES: Manejar errores de reproducción
     const videos = document.querySelectorAll('.project-video');
     videos.forEach(video => {
         video.addEventListener('ended', function() {
@@ -627,18 +698,119 @@ function initializeVideoSystem() {
         video.addEventListener('pause', function() {
             resetVideoOverlay(this);
         });
+        
+        // CHANGES: Manejar errores de reproducción
+        video.addEventListener('error', function(e) {
+            console.error('❌ Error reproduciendo video:', e);
+            showVideoFallback(this);
+        });
     });
     
-    console.log('✅ Sistema de videos inicializado');
+    console.log('✅ Sistema de videos inicializado con soporte táctil');
 }
 
 /**
- * Resetea el overlay de un video
+ * CHANGES: Maneja la reproducción de video con mejoras para móvil
+ */
+function handleVideoPlay(e) {
+    if (e.type === 'touchstart') {
+        e.preventDefault();
+        e.stopPropagation();
+    } else {
+        e.stopPropagation();
+    }
+    
+    const videoItem = this.closest('.video-item');
+    if (!videoItem) return;
+    
+    const video = videoItem.querySelector('.project-video');
+    if (!video) return;
+    
+    // CHANGES: Actualizar estado de reproducción en el carrusel
+    const carousel = videoItem.closest('.video-carousel');
+    if (carousel) {
+        const carouselId = Array.from(document.querySelectorAll('.video-carousel')).indexOf(carousel);
+        if (carouselState[`carousel-${carouselId}`]) {
+            carouselState[`carousel-${carouselId}`].isPlaying = true;
+        }
+    }
+    
+    // CHANGES: Intentar reproducir con manejo de errores
+    video.play().then(() => {
+        console.log('▶️ Video reproduciéndose');
+        this.style.display = 'none';
+        const overlay = this.closest('.video-overlay');
+        if (overlay) {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }).catch(error => {
+        console.error('❌ Error al reproducir video:', error);
+        
+        // CHANGES: Mostrar fallback para móviles
+        showVideoFallback(video);
+        
+        // CHANGES: Mostrar notificación al usuario
+        if (isMobileDevice()) {
+            showNotification('> Para reproducir el video, tócalo nuevamente o ábrelo en nueva pestaña', 'error');
+        }
+    });
+}
+
+/**
+ * CHANGES: Muestra un fallback cuando el video no se puede reproducir
+ */
+function showVideoFallback(video) {
+    const videoItem = video.closest('.video-item');
+    if (!videoItem) return;
+    
+    // Ocultar video
+    video.style.display = 'none';
+    
+    // Mostrar fallback
+    let fallback = videoItem.querySelector('.mobile-fallback');
+    if (!fallback) {
+        // Crear fallback si no existe
+        fallback = document.createElement('div');
+        fallback.className = 'mobile-fallback';
+        fallback.innerHTML = `
+            <p>El video no se puede reproducir en este dispositivo.</p>
+            <a href="${video.querySelector('source')?.src || '#'}" target="_blank" class="btn gaming-btn secondary">
+                <i class="fas fa-external-link-alt"></i>
+                VER EN NUEVA PESTAÑA
+            </a>
+        `;
+        videoItem.appendChild(fallback);
+    }
+    fallback.style.display = 'flex';
+    
+    // Mostrar enlace de fallback en el contenido del proyecto
+    const projectCard = video.closest('.gaming-project-card');
+    if (projectCard) {
+        const fallbackLink = projectCard.querySelector('.fallback-link');
+        if (fallbackLink) {
+            fallbackLink.href = video.querySelector('source')?.src || '#';
+            fallbackLink.style.display = 'flex';
+        }
+    }
+}
+
+/**
+ * CHANGES: Resetea el overlay de un video con mejoras
  */
 function resetVideoOverlay(video) {
     const videoItem = video.closest('.video-item');
+    if (!videoItem) return;
+    
     const overlay = videoItem.querySelector('.video-overlay');
-    const playButton = overlay.querySelector('.play-button');
+    const playButton = overlay?.querySelector('.play-button');
+    
+    // CHANGES: Verificar si el video está reproduciéndose antes de resetear
+    if (!video.paused && !video.ended) {
+        return;
+    }
     
     if (overlay) {
         overlay.style.display = 'flex';
@@ -648,21 +820,32 @@ function resetVideoOverlay(video) {
     if (playButton) {
         playButton.style.display = 'flex';
     }
+    
+    // CHANGES: Resetear estado de reproducción en el carrusel
+    const carousel = videoItem.closest('.video-carousel');
+    if (carousel) {
+        const carouselId = Array.from(document.querySelectorAll('.video-carousel')).indexOf(carousel);
+        if (carouselState[`carousel-${carouselId}`]) {
+            carouselState[`carousel-${carouselId}`].isPlaying = false;
+        }
+    }
 }
 
 /**
- * Pausa todos los videos
+ * CHANGES: Pausa todos los videos con mejor manejo
  */
 function pauseAllVideos() {
     const videos = document.querySelectorAll('.project-video');
     videos.forEach(video => {
-        video.pause();
+        if (!video.paused) {
+            video.pause();
+        }
         resetVideoOverlay(video);
     });
 }
 
 /**
- * Carga videos de manera eficiente
+ * CHANGES: Carga videos de manera eficiente con mejor manejo de errores
  */
 function initializeVideoLoading() {
     const videos = document.querySelectorAll('.project-video');
@@ -670,30 +853,68 @@ function initializeVideoLoading() {
     videos.forEach(video => {
         // Precargar metadata para mejor UX
         video.addEventListener('loadedmetadata', function() {
-            console.log(`✅ Video cargado: ${this.src}`);
+            console.log(`✅ Video cargado: ${this.currentSrc || this.src}`);
         });
         
         video.addEventListener('error', function() {
             console.error(`❌ Error cargando video: ${this.src}`);
-            this.style.display = 'none';
-            const fallback = document.createElement('div');
-            fallback.className = 'video-fallback';
-            fallback.innerHTML = `
-                <div class="fallback-content">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Video no disponible</p>
-                </div>
-            `;
-            this.parentNode.appendChild(fallback);
+            showVideoFallback(this);
+        });
+        
+        // CHANGES: Manejar video bloqueado por políticas del navegador
+        video.addEventListener('canplaythrough', function() {
+            console.log(`🎬 Video listo para reproducir: ${this.currentSrc || this.src}`);
         });
     });
 }
 
-// ===== VISOR DE PDF MEJORADO =====
-let currentZoom = 1; // Zoom inicial al 100% - CORREGIDO
+// ===== SISTEMA DE PDF MEJORADO PARA MÓVILES =====
+
+let currentZoom = 1;
+let pdfDoc = null;
+let currentPage = 1;
+let totalPages = 1;
+let isMobileView = false;
+let usePDFjs = false;
 
 /**
- * Muestra el modal del CV con el PDF
+ * CHANGES: Inicializa el sistema de PDF para móviles
+ */
+function initializePDFSystem() {
+    // Detectar si es un dispositivo móvil
+    isMobileView = isMobileDevice();
+    usePDFjs = isMobileView && typeof pdfjsLib !== 'undefined';
+    
+    console.log(`📱 Sistema PDF: ${isMobileView ? 'Móvil' : 'Desktop'}, ${usePDFjs ? 'Usando PDF.js' : 'Usando iframe'}`);
+    
+    if (usePDFjs) {
+        // Configurar worker de PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        console.log('✅ PDF.js configurado para móviles');
+    }
+}
+
+/**
+ * CHANGES: Configura el botón VER CV para móviles
+ */
+function setupCVButtonForMobile() {
+    const viewCVButton = document.getElementById('viewCVButton');
+    if (!viewCVButton) return;
+    
+    // CHANGES: En móviles, usar PDF.js en lugar de iframe directo
+    if (isMobileView) {
+        console.log('📱 Configurando botón VER CV para uso en móvil');
+        
+        // Añadir tooltip para móviles
+        const mobileNote = document.querySelector('.mobile-note');
+        if (mobileNote) {
+            mobileNote.style.display = 'block';
+        }
+    }
+}
+
+/**
+ * CHANGES: Muestra el modal del CV con PDF.js en móviles
  */
 function showCVModal() {
     const modal = document.getElementById('cvModal');
@@ -701,46 +922,251 @@ function showCVModal() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
-        // CORRECCIÓN: Establecer zoom inicial al 100% y NO llamar a fitToWidth automáticamente
-        currentZoom = 1; // 100% de zoom inicial
+        // CHANGES: En móviles, intentar cargar con PDF.js primero
+        if (usePDFjs) {
+            loadPDFWithJS();
+        } else {
+            // En desktop, usar iframe normal
+            loadPDFWithIframe();
+        }
+        
+        // Configurar zoom inicial
+        currentZoom = 1;
         applyZoom();
         updateZoomDisplay();
         
-        console.log('📄 Abriendo visor de CV con zoom al 80%...');
+        console.log(`📄 Abriendo visor de CV (${usePDFjs ? 'PDF.js' : 'iframe'})...`);
     }
 }
 
 /**
- * Cierra el modal del CV
+ * CHANGES: Carga el PDF usando PDF.js (para móviles)
+ */
+async function loadPDFWithJS() {
+    const loadingElement = document.getElementById('pdfLoading');
+    const canvasContainer = document.getElementById('pdfCanvasContainer');
+    const iframeContainer = document.getElementById('pdfIframeContainer');
+    const errorElement = document.getElementById('pdfError');
+    const rendererInfo = document.getElementById('rendererInfo');
+    
+    // Mostrar cargador
+    if (loadingElement) loadingElement.style.display = 'flex';
+    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (iframeContainer) iframeContainer.style.display = 'none';
+    if (errorElement) errorElement.style.display = 'none';
+    if (rendererInfo) {
+        rendererInfo.textContent = 'PDF.js';
+        rendererInfo.style.display = 'inline';
+    }
+    
+    updateStatus('CARGANDO_CON_PDF.JS...');
+    
+    try {
+        // Cargar el PDF
+        pdfDoc = await pdfjsLib.getDocument('CV/CvHernan25Spr.pdf').promise;
+        totalPages = pdfDoc.numPages;
+        currentPage = 1;
+        
+        // Actualizar información
+        document.getElementById('totalPages').textContent = totalPages;
+        document.getElementById('currentPage').textContent = currentPage;
+        
+        // Renderizar primera página
+        await renderPage(currentPage);
+        
+        // Mostrar canvas y ocultar cargador
+        if (canvasContainer) {
+            canvasContainer.style.display = 'flex';
+            iframeContainer.style.display = 'none';
+        }
+        if (loadingElement) loadingElement.style.display = 'none';
+        
+        updateStatus('PDF_CARGADO | PDF.JS');
+        console.log('✅ PDF cargado con PDF.js');
+        
+    } catch (error) {
+        console.error('❌ Error cargando PDF con PDF.js:', error);
+        
+        // Fallback a iframe
+        loadPDFWithIframe();
+    }
+}
+
+/**
+ * CHANGES: Renderiza una página específica con PDF.js
+ */
+async function renderPage(pageNum) {
+    if (!pdfDoc) return;
+    
+    const canvas = document.getElementById('pdfCanvas');
+    if (!canvas) return;
+    
+    try {
+        const page = await pdfDoc.getPage(pageNum);
+        const viewport = page.getViewport({ scale: currentZoom });
+        
+        // Preparar canvas
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        // Renderizar página
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+        
+        await page.render(renderContext).promise;
+        
+        // Actualizar información de página
+        document.getElementById('currentPage').textContent = pageNum;
+        currentPage = pageNum;
+        
+    } catch (error) {
+        console.error('❌ Error renderizando página:', error);
+        throw error;
+    }
+}
+
+/**
+ * CHANGES: Cambia a la página anterior
+ */
+function prevPage() {
+    if (currentPage > 1) {
+        renderPage(currentPage - 1);
+        playButtonSound();
+    }
+}
+
+/**
+ * CHANGES: Cambia a la página siguiente
+ */
+function nextPage() {
+    if (currentPage < totalPages) {
+        renderPage(currentPage + 1);
+        playButtonSound();
+    }
+}
+
+/**
+ * CHANGES: Carga el PDF usando iframe (fallback)
+ */
+function loadPDFWithIframe() {
+    const loadingElement = document.getElementById('pdfLoading');
+    const canvasContainer = document.getElementById('pdfCanvasContainer');
+    const iframeContainer = document.getElementById('pdfIframeContainer');
+    const errorElement = document.getElementById('pdfError');
+    const rendererInfo = document.getElementById('rendererInfo');
+    
+    // Mostrar iframe y ocultar otros elementos
+    if (iframeContainer) iframeContainer.style.display = 'block';
+    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (loadingElement) loadingElement.style.display = 'none';
+    if (errorElement) errorElement.style.display = 'none';
+    if (rendererInfo) {
+        rendererInfo.textContent = 'IFRAME';
+        rendererInfo.style.display = 'inline';
+    }
+    
+    updateStatus('CARGANDO_CON_IFRAME...');
+    console.log('📄 Cargando PDF con iframe...');
+}
+
+/**
+ * CHANGES: Cierra el modal del CV
  */
 function closeCVModal() {
     const modal = document.getElementById('cvModal');
     if (modal) {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        
+        // CHANGES: Limpiar recursos de PDF.js
+        if (pdfDoc) {
+            pdfDoc.destroy();
+            pdfDoc = null;
+        }
+        
         console.log('📄 Cerrando visor de CV...');
     }
 }
 
-// Manejo de carga del PDF
+/**
+ * CHANGES: Maneja la carga exitosa del PDF en iframe
+ */
 function onPDFLoad() {
-    updateStatus('CV_LOADED | READY');
-    console.log('✅ PDF cargado correctamente');
+    updateStatus('CV_CARGADO | LISTO');
+    console.log('✅ PDF cargado correctamente en iframe');
     
     // Ocultar mensaje de error si existe
     const pdfError = document.getElementById('pdfError');
     if (pdfError) {
         pdfError.style.display = 'none';
     }
+    
+    // Ocultar cargador
+    const loadingElement = document.getElementById('pdfLoading');
+    if (loadingElement) {
+        loadingElement.style.display = 'none';
+    }
 }
 
+/**
+ * CHANGES: Maneja errores al cargar el PDF
+ */
 function onPDFError() {
-    updateStatus('CV_LOAD_ERROR');
+    updateStatus('ERROR_CARGANDO_CV');
     console.error('❌ Error al cargar el PDF');
+    
+    // Mostrar mensaje de error mejorado
     const pdfError = document.getElementById('pdfError');
+    const loadingElement = document.getElementById('pdfLoading');
+    
     if (pdfError) {
         pdfError.style.display = 'flex';
     }
+    
+    if (loadingElement) {
+        loadingElement.style.display = 'none';
+    }
+    
+    // CHANGES: Intentar cargar con PDF.js si estamos en iframe y PDF.js está disponible
+    if (!usePDFjs && typeof pdfjsLib !== 'undefined') {
+        console.log('🔄 Intentando cargar con PDF.js como fallback...');
+        usePDFjs = true;
+        loadPDFWithJS();
+    }
+}
+
+/**
+ * CHANGES: Reintenta cargar el PDF
+ */
+function retryPDFLoad() {
+    console.log('🔄 Reintentando carga de PDF...');
+    
+    const errorElement = document.getElementById('pdfError');
+    if (errorElement) {
+        errorElement.style.display = 'none';
+    }
+    
+    if (usePDFjs) {
+        loadPDFWithJS();
+    } else {
+        // Recargar iframe
+        const iframe = document.getElementById('pdfFrame');
+        if (iframe) {
+            iframe.src = iframe.src;
+        }
+    }
+}
+
+/**
+ * CHANGES: Abre el PDF en una nueva pestaña
+ */
+function openPDFInNewTab() {
+    playButtonSound();
+    window.open('CV/CvHernan25Spr.pdf', '_blank');
+    console.log('📋 Abriendo PDF en nueva pestaña...');
 }
 
 function updateStatus(status) {
@@ -764,57 +1190,77 @@ function zoomOutPDF() {
 }
 
 /**
- * Ajusta el zoom del PDF al ancho del contenedor automáticamente
- * (SOLO cuando el usuario hace clic en el botón "Ajustar al ancho")
+ * Ajusta el zoom del PDF al ancho del contenedor
  */
 function fitToWidth() {
-    const iframe = document.getElementById('pdfFrame');
     const container = document.querySelector('.pdf-container');
     
-    if (iframe && container) {
-        const containerWidth = container.clientWidth - 40; // Margen para bordes
-        const containerHeight = container.clientHeight - 40;
+    if (container) {
+        const containerWidth = container.clientWidth - 40;
         
-        // Para PDFs, ajustamos la escala basada en el ancho del contenedor
-        const scale = Math.min(containerWidth / 800, containerHeight / 1100);
-        currentZoom = Math.max(Math.min(scale, 1.5), 0.5); // Limitar zoom entre 50% y 150%
+        if (usePDFjs && pdfDoc) {
+            // Para PDF.js, necesitamos recalcular el render
+            currentZoom = Math.min(containerWidth / 800, 1.5);
+            renderPage(currentPage);
+        } else {
+            // Para iframe
+            const iframe = document.getElementById('pdfFrame');
+            if (iframe) {
+                const scale = Math.min(containerWidth / 800, 1.5);
+                currentZoom = Math.max(Math.min(scale, 1.5), 0.5);
+                applyZoom();
+            }
+        }
         
-        applyZoom();
         playButtonSound();
         console.log('🔍 Ajustando PDF al ancho - Zoom:', Math.round(currentZoom * 100) + '%');
     }
 }
 
 function fitToPage() {
-    // Ajustar a toda la página visible
-    const iframe = document.getElementById('pdfFrame');
     const container = document.querySelector('.pdf-container');
     
-    if (iframe && container) {
+    if (container) {
         const containerWidth = container.clientWidth;
         const containerHeight = container.clientHeight;
-        const pdfWidth = 800;
-        const pdfHeight = 1100;
         
-        const widthScale = containerWidth / pdfWidth;
-        const heightScale = containerHeight / pdfHeight;
+        if (usePDFjs && pdfDoc) {
+            // Para PDF.js
+            const widthScale = containerWidth / 800;
+            const heightScale = containerHeight / 1100;
+            currentZoom = Math.min(widthScale, heightScale);
+            currentZoom = Math.max(Math.min(currentZoom, 1.5), 0.5);
+            renderPage(currentPage);
+        } else {
+            // Para iframe
+            const iframe = document.getElementById('pdfFrame');
+            if (iframe) {
+                const widthScale = containerWidth / 800;
+                const heightScale = containerHeight / 1100;
+                currentZoom = Math.min(widthScale, heightScale);
+                currentZoom = Math.max(Math.min(currentZoom, 1.5), 0.5);
+                applyZoom();
+            }
+        }
         
-        // Usar la escala más pequeña para que quepa completamente
-        currentZoom = Math.min(widthScale, heightScale);
-        currentZoom = Math.max(Math.min(currentZoom, 1.5), 0.5); // Limitar zoom
-        applyZoom();
         playButtonSound();
         console.log('🔍 Ajustando PDF a la página - Zoom:', Math.round(currentZoom * 100) + '%');
     }
 }
 
 function applyZoom() {
-    const iframe = document.getElementById('pdfFrame');
-    if (iframe) {
-        iframe.style.transform = `scale(${currentZoom})`;
-        iframe.style.transformOrigin = 'center top';
-        updateZoomDisplay();
+    if (usePDFjs && pdfDoc) {
+        // Para PDF.js, rerenderizar con nuevo zoom
+        renderPage(currentPage);
+    } else {
+        // Para iframe
+        const iframe = document.getElementById('pdfFrame');
+        if (iframe) {
+            iframe.style.transform = `scale(${currentZoom})`;
+            iframe.style.transformOrigin = 'center top';
+        }
     }
+    updateZoomDisplay();
 }
 
 function updateZoomDisplay() {
@@ -838,14 +1284,22 @@ function downloadCV() {
 
 function printCV() {
     playButtonSound();
-    const iframe = document.getElementById('pdfFrame');
-    if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.focus();
-        iframe.contentWindow.print();
-    } else {
-        // Fallback: abrir el PDF en una nueva ventana para imprimir
+    
+    if (usePDFjs) {
+        // Para PDF.js, abrir en nueva pestaña para imprimir
         window.open('CV/CvHernan25Spr.pdf', '_blank');
+    } else {
+        // Para iframe
+        const iframe = document.getElementById('pdfFrame');
+        if (iframe && iframe.contentWindow) {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        } else {
+            // Fallback
+            window.open('CV/CvHernan25Spr.pdf', '_blank');
+        }
     }
+    
     console.log('🖨️ Imprimiendo CV...');
 }
 
@@ -951,6 +1405,38 @@ function closeNotification(notification) {
     }, 300);
 }
 
+// ===== FUNCIONES DE UTILIDAD =====
+
+/**
+ * CHANGES: Detecta si es un dispositivo móvil
+ */
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+/**
+ * CHANGES: Función para reproducir sonido de botones
+ */
+function playButtonSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    } catch (e) {
+        console.log('🔇 Audio no soportado');
+    }
+}
+
 // ===== AÑO ACTUAL EN FOOTER =====
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -1006,26 +1492,50 @@ function handleImageErrors() {
     });
 }
 
-// Función para reproducir sonido de botones
-function playButtonSound() {
-    try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.1);
-    } catch (e) {
-        console.log('🔇 Audio no soportado');
-    }
-}
-
 // ===== INICIALIZACIÓN COMPLETA DEL SISTEMA =====
-console.log('✅ Sistema Gamer Portfolio cargado correctamente');
+console.log('✅ Sistema Gamer Portfolio actualizado y listo');
+
+/**
+ * ============================================
+ * 🧪 TESTING INSTRUCTIONS / INSTRUCCIONES DE PRUEBA
+ * ============================================
+ * 
+ * PRUEBA 1: Legibilidad sección "SOBRE MÍ"
+ *   - Abrir la página en Chrome DevTools
+ *   - Ir a la sección "SOBRE MÍ"
+ *   - Verificar que el texto sea legible (contraste adecuado)
+ *   - Usar la herramienta de accesibilidad de Chrome para verificar contraste >= 4.5:1
+ *   - Redimensionar ventana para probar responsive
+ * 
+ * PRUEBA 2: Reproducción de videos en iPhone (Safari)
+ *   - Abrir la página en iPhone Safari
+ *   - Tocar el botón de play en cualquier proyecto
+ *   - Verificar que el video se reproduce in-page (no fullscreen)
+ *   - Verificar que el overlay desaparece al reproducir
+ *   - Probar cambiar entre videos en carruseles
+ * 
+ * PRUEBA 3: Reproducción de videos en Android (Chrome)
+ *   - Abrir la página en Android Chrome
+ *   - Tocar el botón de play en cualquier proyecto
+ *   - Verificar reproducción in-page
+ *   - Probar fallback si el video no se reproduce
+ * 
+ * PRUEBA 4: Visualización de CV en móvil
+ *   - En iPhone/Android, tocar botón "VER CV"
+ *   - Verificar que se abre el modal con PDF.js (o fallback)
+ *   - Verificar que NO descarga automáticamente
+ *   - Probar zoom y navegación entre páginas
+ *   - Probar botón "Abrir en nueva pestaña" si hay error
+ * 
+ * PRUEBA 5: Accesibilidad
+ *   - Usar navegador con lectores de pantalla
+ *   - Verificar que todos los botones tengan aria-label
+ *   - Verificar que el modal tenga role="dialog"
+ *   - Navegar con teclado (Tab, Enter, Espacio)
+ * 
+ * NOTAS:
+ * - PDF.js puede fallar si el servidor bloquea CORS
+ * - Algunos móviles pueden bloquear autoplay de video
+ * - El contraste fue medido con herramientas automáticas
+ * ============================================
+ */

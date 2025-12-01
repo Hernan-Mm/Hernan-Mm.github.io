@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fuentes gaming -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- PDF.js para visualización de CV en móviles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
 </head>
 <body class="gamer-theme">
     <!-- Pantalla de Inicio Gameboy -->
@@ -162,13 +164,13 @@
                             <h1 class="hero-title gaming-title">
                                 <span class="typewriter">>_ HERNÁN MOREYRA</span>
                                 <span class="subtitle gaming-subtitle">
-                                    <span class="blink">_</span> FULL_STACK_DEV | GAMER
+                                    <span class="blink">_</span> FULL_STACK_DEV | <span class="gamer-accent">GAMER</span>
                                 </span>
                             </h1>
                             <p class="hero-description gaming-description">
                                 <span class="command-prompt">></span> 
                                 Transformando líneas de código en experiencias digitales épicas. 
-                                Especializado en desarrollo web con esencia gamer.
+                                Especializado en desarrollo web con esencia <span class="gamer-accent-small">gamer</span>.
                             </p>
                             <div class="hero-buttons gaming-buttons">
                                 <a href="#projects" class="btn gaming-btn primary">
@@ -238,13 +240,14 @@
             </div>
         </section>
 
-        <!-- Sección Sobre Mí Gaming -->
+        <!-- Sección Sobre Mí Gaming - CON MEJORAS DE LEGIBILIDAD -->
         <section id="about" class="about gaming-about">
             <div class="container">
                 <div class="section-header gaming-header">
                     <h2 class="section-title gaming-section-title">
                         <span class="title-icon"><i class="fas fa-user"></i></span>
                         SOBRE_MÍ
+                        <span class="gamer-accent">[GAMER_DEV]</span>
                     </h2>
                     <div class="title-underline"></div>
                 </div>
@@ -253,15 +256,15 @@
                         <div class="console-text">
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Soy Desarrollador Full Stack con una base sólida en atención al cliente y gastronomía: dos áreas que me enseñaron algo que muchos devs pasan por alto — cómo entender a las personas y crear soluciones que realmente sirvan.</span>
+                                <span class="text">Soy <span class="highlight-text">Desarrollador Full Stack</span> con una base sólida en atención al cliente y gastronomía: dos áreas que me enseñaron algo que muchos devs pasan por alto — cómo entender a las personas y crear soluciones que realmente sirvan.</span>
                             </p>
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Mi camino en tecnología nació desde el mundo gamer: crecí explorando sistemas, mods, interfaces y preguntándome cómo funcionaban por dentro. Esa curiosidad se transformó en proyectos reales y en una mentalidad creativa orientada a experiencias digitales fluidas, funcionales y divertidas.</span>
+                                <span class="text">Mi camino en tecnología nació desde el mundo <span class="gamer-accent-small">gamer</span>: crecí explorando sistemas, mods, interfaces y preguntándome cómo funcionaban por dentro. Esa curiosidad se transformó en proyectos reales y en una mentalidad creativa orientada a experiencias digitales fluidas, funcionales y divertidas.</span>
                             </p>
                             <p class="command-line">
                                 <span class="prompt">></span> 
-                                <span class="text">Me formé en Egg Programación y Argentina Programa 4.0, donde aprendí a trabajar en equipo, resolver problemas y manejar tecnologías actuales del desarrollo web. Hoy combino ese conocimiento técnico con mi lado gamer para crear proyectos que tienen propósito, identidad y detalle.</span>
+                                <span class="text">Me formé en <span class="highlight-text">Egg Programación</span> y <span class="highlight-text">Argentina Programa 4.0</span>, donde aprendí a trabajar en equipo, resolver problemas y manejar tecnologías actuales del desarrollo web. Hoy combino ese conocimiento técnico con mi lado gamer para crear proyectos que tienen propósito, identidad y detalle.</span>
                             </p>
                             <p class="command-line">
                                 <span class="prompt">></span> 
@@ -492,7 +495,7 @@
             </div>
         </section>
 
-        <!-- Sección Proyectos Gaming - CARRUSEL COMPLETAMENTE FUNCIONAL -->
+        <!-- Sección Proyectos Gaming - MEJORADO PARA MÓVILES -->
         <section id="projects" class="projects gaming-projects">
             <div class="container">
                 <div class="section-header gaming-header">
@@ -522,21 +525,35 @@
                         </div>
                         <div class="project-image gaming-project-image">
                             <div class="project-screenshot">
-                                <video class="project-video" controls poster="Videos/poster-unity.jpg">
+                                <!-- FIX: Atributos mejorados para móvil -->
+                                <video class="project-video" 
+                                       controls 
+                                       playsinline 
+                                       preload="metadata" 
+                                       poster="Videos/poster-unity.jpg"
+                                       aria-label="Video demostrativo de juego Unity">
                                     <source src="Videos/ZRush_Proyect.mp4" type="video/mp4">
                                     <source src="Videos/ZRush_Proyect.webm" type="video/webm">
                                     Tu navegador no soporta el elemento de video.
                                 </video>
-                                <div class="video-overlay">
-                                    <button class="play-button">
+                                <div class="video-overlay" role="button" tabindex="0" aria-label="Reproducir video">
+                                    <button class="play-button" aria-label="Reproducir video">
                                         <i class="fas fa-play"></i>
                                     </button>
+                                </div>
+                                <!-- Fallback para móviles -->
+                                <div class="mobile-fallback" style="display: none;">
+                                    <p>El video no se puede reproducir en este dispositivo.</p>
+                                    <a href="Videos/ZRush_Proyect.mp4" target="_blank" class="btn gaming-btn secondary">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        VER EN NUEVA PESTAÑA
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content">
                             <p class="project-description gaming-description">
-                                Desarrollo de videojuegos con Unity y C#. Especializado en sprites 2D, 
+                                Desarrollo de videojuegos con Unity y C#. Especializado en diseño 3D, 
                                 mecánicas de juego fluidas y diseño de niveles. Incluye proyectos con 
                                 IA enemiga, sistemas de puntuación y efectos visuales avanzados.
                             </p>
@@ -551,9 +568,9 @@
                                     <i class="fab fa-github"></i>
                                     VER CÓDIGO
                                 </a>
-                                <a href="#" class="project-link gaming-link">
+                                <a href="Videos/ZRush_Proyect.mp4" target="_blank" class="project-link gaming-link fallback-link" style="display: none;">
                                     <i class="fas fa-external-link-alt"></i>
-                                    VER DEMO
+                                    VER VIDEO
                                 </a>
                             </div>
                         </div>
@@ -580,12 +597,18 @@
                                 <div class="video-carousel">
                                     <!-- Video 1 - Barbería -->
                                     <div class="video-item active">
-                                        <video class="project-video" controls poster="Videos/poster-barberia.jpg">
+                                        <!-- FIX: Atributos mejorados para móvil -->
+                                        <video class="project-video" 
+                                               controls 
+                                               playsinline 
+                                               preload="metadata" 
+                                               poster="Videos/poster-barberia.jpg"
+                                               aria-label="Video demostrativo de sitio web para barbería">
                                             <source src="Videos/ProyectoBarberia.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
-                                        <div class="video-overlay">
-                                            <button class="play-button">
+                                        <div class="video-overlay" role="button" tabindex="0" aria-label="Reproducir video">
+                                            <button class="play-button" aria-label="Reproducir video">
                                                 <i class="fas fa-play"></i>
                                             </button>
                                         </div>
@@ -593,12 +616,18 @@
                                     
                                     <!-- Video 2 - Número Secreto -->
                                     <div class="video-item">
-                                        <video class="project-video" controls poster="Videos/poster-secreto.jpg">
+                                        <!-- FIX: Atributos mejorados para móvil -->
+                                        <video class="project-video" 
+                                               controls 
+                                               playsinline 
+                                               preload="metadata" 
+                                               poster="Videos/poster-secreto.jpg"
+                                               aria-label="Video demostrativo de juego Número Secreto">
                                             <source src="Videos/ProyectoNumeroSecreto.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
-                                        <div class="video-overlay">
-                                            <button class="play-button">
+                                        <div class="video-overlay" role="button" tabindex="0" aria-label="Reproducir video">
+                                            <button class="play-button" aria-label="Reproducir video">
                                                 <i class="fas fa-play"></i>
                                             </button>
                                         </div>
@@ -606,10 +635,10 @@
                                     
                                     <!-- Controles del carrusel -->
                                     <div class="carousel-controls">
-                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)">
+                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)" aria-label="Video anterior">
                                             <i class="fas fa-chevron-left"></i>
                                         </button>
-                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)">
+                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)" aria-label="Video siguiente">
                                             <i class="fas fa-chevron-right"></i>
                                         </button>
                                     </div>
@@ -664,26 +693,37 @@
                                 <div class="video-carousel">
                                     <!-- Video 1 - Runner -->
                                     <div class="video-item active">
-                                        <video class="project-video" controls poster="Videos/poster-run.jpg">
+                                        <!-- FIX: Atributos mejorados para móvil -->
+                                        <video class="project-video" 
+                                               controls 
+                                               playsinline 
+                                               preload="metadata" 
+                                               poster="Videos/poster-run.jpg"
+                                               aria-label="Video demostrativo de juego Runner">
                                             <source src="Videos/ProyectoRun.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
-                                        <div class="video-overlay">
-                                            <button class="play-button">
+                                        <div class="video-overlay" role="button" tabindex="0" aria-label="Reproducir video">
+                                            <button class="play-button" aria-label="Reproducir video">
                                                 <i class="fas fa-play"></i>
                                             </button>
                                         </div>
                                     </div>
                                     
-                                
-                                   <!-- Video 2 - Beat'em Up -->
+                                    <!-- Video 2 - Beat'em Up -->
                                     <div class="video-item">
-                                        <video class="project-video" controls poster="Videos/poster-beatemup.jpg">
+                                        <!-- FIX: Atributos mejorados para móvil -->
+                                        <video class="project-video" 
+                                               controls 
+                                               playsinline 
+                                               preload="metadata" 
+                                               poster="Videos/poster-beatemup.jpg"
+                                               aria-label="Video demostrativo de juego Beat'em Up">
                                             <source src="Videos/Vídeo beat em up.mp4" type="video/mp4">
                                             Tu navegador no soporta el elemento de video.
                                         </video>
-                                        <div class="video-overlay">
-                                            <button class="play-button">
+                                        <div class="video-overlay" role="button" tabindex="0" aria-label="Reproducir video">
+                                            <button class="play-button" aria-label="Reproducir video">
                                                 <i class="fas fa-play"></i>
                                             </button>
                                         </div>
@@ -691,15 +731,13 @@
                                     
                                     <!-- Controles del carrusel -->
                                     <div class="carousel-controls">
-                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)">
+                                        <button class="carousel-btn prev" onclick="changeVideo(this, -1)" aria-label="Video anterior">
                                             <i class="fas fa-chevron-left"></i>
                                         </button>
-                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)">
+                                        <button class="carousel-btn next" onclick="changeVideo(this, 1)" aria-label="Video siguiente">
                                             <i class="fas fa-chevron-right"></i>
                                         </button>
                                     </div>
-                                    
-                                    <!-- Indicadores del carrusel (se generan automáticamente con JS) -->
                                 </div>
                             </div>
                         </div>
@@ -785,18 +823,24 @@
                                 <div class="cv-section">
                                     <div class="command-line">
                                         <span class="prompt">></span> 
-                                        <span class="text">Descarga mi stats completos:</span>
+                                        <span class="text">Descarga mis stats completos:</span>
                                     </div>
                                     <div class="cv-buttons gaming-cv-buttons">
+                                        <!-- Botón DESCARGAR - siempre disponible -->
                                         <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
                                             <i class="fas fa-download"></i>
                                             DESCARGAR CV
                                         </a>
-                                        <button class="btn gaming-btn secondary" onclick="showCVModal()">
+                                        <!-- Botón VER CV - usa PDF.js en móviles -->
+                                        <button class="btn gaming-btn secondary" onclick="showCVModal()" id="viewCVButton">
                                             <i class="fas fa-eye"></i>
                                             VER CV
                                         </button>
                                     </div>
+                                    <!-- Nota para móviles -->
+                                    <p class="mobile-note" style="display: none; margin-top: 10px; font-size: 0.8rem; color: var(--text-secondary);">
+                                        <i class="fas fa-info-circle"></i> En móviles, el CV se abre en el visor integrado
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -869,15 +913,15 @@
             </div>
         </footer>
 
-        <!-- Modal CV Gaming Mejorado -->
-        <div id="cvModal" class="modal gaming-modal">
+        <!-- Modal CV Gaming Mejorado con PDF.js -->
+        <div id="cvModal" class="modal gaming-modal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
             <div class="modal-content gaming-modal-content cv-viewer-modal">
                 <div class="modal-header">
                     <div class="header-left">
                         <i class="fas fa-file-code"></i>
-                        <h3>CV_VIEWER.exe</h3>
+                        <h3 id="cvModalTitle">CV_VIEWER.exe</h3>
                     </div>
-                    <span class="close" onclick="closeCVModal()">&times;</span>
+                    <span class="close" onclick="closeCVModal()" aria-label="Cerrar visor de CV">&times;</span>
                 </div>
                 
                 <div class="cv-viewer-container">
@@ -889,64 +933,106 @@
                         </div>
                         
                         <div class="frame-content">
+                            <!-- Contenedor principal para PDF -->
                             <div class="pdf-container">
-                                <div id="pdfViewer" class="pdf-viewer">
-                                     <iframe 
-                                     id="pdfFrame"
-                                     src="CV/CvHernan25Spr.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
-                                     width="100%" 
-                                     height="100%"
-                                     class="pdf-iframe"
-                                     frameborder="0"
-                                     style="width: 100%; height: 100%; border: none;"
-                                     onload="onPDFLoad()"
-                                     onerror="onPDFError()">
-                                     <p>Tu navegador no soporta la visualización de PDFs. 
-                                     <a href="CV/CvHernan25Spr.pdf" download>Descarga el CV aquí</a>.
-                                     </p>
-                                     </iframe>
+                                <!-- Canvas para PDF.js -->
+                                <div id="pdfCanvasContainer" class="pdf-canvas-container" style="display: none;">
+                                    <canvas id="pdfCanvas"></canvas>
+                                    <div class="pdf-js-controls">
+                                        <button onclick="prevPage()" class="control-btn" aria-label="Página anterior">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <span id="pageInfo" class="page-info">Página: <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+                                        <button onclick="nextPage()" class="control-btn" aria-label="Página siguiente">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Iframe como fallback -->
+                                <div id="pdfIframeContainer" class="pdf-iframe-container">
+                                    <iframe 
+                                        id="pdfFrame"
+                                        src="CV/CvHernan25Spr.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
+                                        width="100%" 
+                                        height="100%"
+                                        class="pdf-iframe"
+                                        frameborder="0"
+                                        style="width: 100%; height: 100%; border: none;"
+                                        title="Visualizador de CV - Hernán Moreyra"
+                                        onload="onPDFLoad()"
+                                        onerror="onPDFError()">
+                                        <p>Tu navegador no soporta la visualización de PDFs. 
+                                        <a href="CV/CvHernan25Spr.pdf" download>Descarga el CV aquí</a>.
+                                        </p>
+                                    </iframe>
                                     <div class="pdf-overlay"></div>
-                                    <div id="pdfError" class="pdf-error" style="display: none;">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        <h3>ERROR AL CARGAR EL CV</h3>
-                                        <p>No se pudo cargar el archivo PDF. Verifica que el archivo exista en la ruta correcta.</p>
+                                </div>
+                                
+                                <!-- Mensaje de error mejorado -->
+                                <div id="pdfError" class="pdf-error" style="display: none;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <h3>ERROR AL CARGAR EL CV</h3>
+                                    <p>No se pudo cargar el archivo PDF. Esto puede deberse a:</p>
+                                    <ul>
+                                        <li>El archivo no está disponible en la ruta especificada</li>
+                                        <li>Tu navegador no soporta la visualización de PDFs embebidos</li>
+                                        <li>Restricciones de seguridad en dispositivos móviles</li>
+                                    </ul>
+                                    <div class="error-buttons">
                                         <a href="CV/CvHernan25Spr.pdf" class="btn gaming-btn primary" download>
                                             <i class="fas fa-download"></i>
-                                            DESCARGAR CV DIRECTAMENTE
+                                            DESCARGAR CV
                                         </a>
+                                        <button onclick="openPDFInNewTab()" class="btn gaming-btn secondary">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            ABRIR EN NUEVA PESTAÑA
+                                        </button>
+                                        <button onclick="retryPDFLoad()" class="btn gaming-btn secondary">
+                                            <i class="fas fa-redo"></i>
+                                            REINTENTAR
+                                        </button>
                                     </div>
+                                </div>
+                                
+                                <!-- Cargador para PDF.js -->
+                                <div id="pdfLoading" class="pdf-loading">
+                                    <div class="loading-spinner">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </div>
+                                    <p>Cargando CV...</p>
                                 </div>
                             </div>
                             
                             <!-- Controles gamer mejorados -->
                             <div class="pdf-controls">
                                 <div class="control-group">
-                                    <button class="control-btn" onclick="zoomOutPDF()">
+                                    <button class="control-btn" onclick="zoomOutPDF()" aria-label="Alejar zoom">
                                         <i class="fas fa-search-minus"></i>
                                     </button>
                                     <span class="control-label">ZOOM</span>
-                                    <button class="control-btn" onclick="zoomInPDF()">
+                                    <button class="control-btn" onclick="zoomInPDF()" aria-label="Acercar zoom">
                                         <i class="fas fa-search-plus"></i>
                                     </button>
                                     <span id="zoomLevel" class="zoom-level">100%</span>
                                 </div>
                                 
                                 <div class="control-group">
-                                    <button class="control-btn" onclick="fitToWidth()">
+                                    <button class="control-btn" onclick="fitToWidth()" aria-label="Ajustar al ancho">
                                         <i class="fas fa-arrows-alt-h"></i>
                                     </button>
                                     <span class="control-label">AJUSTAR</span>
-                                    <button class="control-btn" onclick="fitToPage()">
+                                    <button class="control-btn" onclick="fitToPage()" aria-label="Ajustar a página">
                                         <i class="fas fa-expand"></i>
                                     </button>
                                 </div>
                                 
                                 <div class="control-group">
-                                    <button class="control-btn" onclick="downloadCV()">
+                                    <button class="control-btn" onclick="downloadCV()" aria-label="Descargar CV">
                                         <i class="fas fa-download"></i>
                                     </button>
                                     <span class="control-label">DESCARGAR</span>
-                                    <button class="control-btn" onclick="printCV()">
+                                    <button class="control-btn" onclick="printCV()" aria-label="Imprimir CV">
                                         <i class="fas fa-print"></i>
                                     </button>
                                 </div>
@@ -958,6 +1044,7 @@
                             <div class="pixel-corner bottom-right"></div>
                             <div class="status-bar">
                                 <span id="statusText" class="status-text">CV_LOADING...</span>
+                                <span id="rendererInfo" class="renderer-info" style="display: none;">PDF.js</span>
                             </div>
                         </div>
                     </div>
