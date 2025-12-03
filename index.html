@@ -31,7 +31,8 @@
                             <p>PORTFOLIO.EXE</p>
                         </div>
                         <div class="main-menu">
-                            <div class="menu-option">> NEW GAME</div>
+                            <!-- BOTÓN NEW GAME CON FUNCIONALIDAD (MEJORA #2) -->
+                            <div class="menu-option" id="newGameButton">> NEW GAME</div>
                             <div class="menu-option">> CONTINUE</div>
                             <div class="menu-option">> OPTIONS</div>
                             <div class="menu-option">> CREDITS</div>
@@ -68,6 +69,7 @@
                     </div>
                 </div>
             </div>
+            <!-- FIX #2: POWER LIGHT CORRECTAMENTE POSICIONADA -->
             <div class="power-light">
                 <div class="power-indicator"></div>
                 <span>POWER</span>
@@ -518,7 +520,7 @@
                 </div>
                 <div class="projects-grid gaming-projects-grid">
                     
-                    <!-- Juegos Unity - Video único -->
+                    <!-- FIX #1: Juegos Unity - Video visible en PC -->
                     <div class="project-card gaming-project-card">
                         <div class="project-header">
                             <div class="project-badge">GAME DEV</div>
@@ -536,11 +538,12 @@
                         </div>
                         <div class="project-image gaming-project-image">
                             <div class="project-screenshot">
-                                <!-- VIDEO MEJORADO PARA MÓVIL -->
+                                <!-- FIX #1: Video optimizado para PC y móviles -->
                                 <video class="project-video" 
                                        controls 
                                        playsinline 
-                                       preload="metadata" 
+                                       muted
+                                       preload="metadata"
                                        poster="Videos/poster-unity.jpg"
                                        aria-label="Video demostrativo de juego Unity"
                                        data-mobile-fallback="Videos/ZRush_Proyect.mp4">
@@ -553,8 +556,8 @@
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
-                                <!-- Fallback para móviles -->
-                                <div class="mobile-fallback" style="display: none;">
+                                <!-- Fallback para móviles mejorado -->
+                                <div class="mobile-fallback">
                                     <p>El video no se puede reproducir en este dispositivo.</p>
                                     <a href="Videos/ZRush_Proyect.mp4" target="_blank" class="btn gaming-btn secondary">
                                         <i class="fas fa-external-link-alt"></i>
@@ -580,7 +583,7 @@
                                     <i class="fab fa-github"></i>
                                     VER CÓDIGO
                                 </a>
-                                <a href="Videos/ZRush_Proyect.mp4" target="_blank" class="project-link gaming-link fallback-link" style="display: none;">
+                                <a href="Videos/ZRush_Proyect.mp4" target="_blank" class="project-link gaming-link fallback-link">
                                     <i class="fas fa-external-link-alt"></i>
                                     VER VIDEO
                                 </a>
@@ -656,6 +659,7 @@
                                     </div>
                                     
                                     <!-- Indicadores del carrusel -->
+                                    <div class="carousel-indicators"></div>
                                 </div>
                             </div>
                         </div>
@@ -750,6 +754,8 @@
                                             <i class="fas fa-chevron-right"></i>
                                         </button>
                                     </div>
+                                    <!-- Indicadores del carrusel -->
+                                    <div class="carousel-indicators"></div>
                                 </div>
                             </div>
                         </div>

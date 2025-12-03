@@ -1,6 +1,13 @@
 /* 
   Archivo: style.css
+  Versión: 2.0
   Modificaciones realizadas:
+  
+  FIX #1: Video de Juegos Unity visible en PC y móviles
+  FIX #2: Power light del Game Boy reposicionada correctamente
+  FIX #3: Optimización de video para todos los dispositivos
+  FIX #4: Mejor gestión del overlay de video
+  
   - TEXTO ESPECÍFICO en amarillo pixel solo en los 4 párrafos de "Sobre Mí"
   - Palabras específicas en verde dentro del texto amarillo
   - Todos los demás títulos restaurados a su estilo verde original
@@ -42,6 +49,34 @@
     --font-primary: 'Share Tech Mono', monospace;
     --font-accent: 'Orbitron', sans-serif;
     --font-pixel: 'Press Start 2P', cursive;
+}
+
+/* ===== FIX #2: POWER LIGHT CORRECTAMENTE POSICIONADA ===== */
+.power-light {
+    position: absolute;
+    top: 15px; /* Ajustado para mejor posición */
+    right: 15px; /* Más centrada dentro del Game Boy */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: #fff;
+    transform: translateX(0);
+    z-index: 100;
+}
+
+.power-indicator {
+    width: 12px;
+    height: 12px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff6b6b;
+    animation: powerPulse 2s infinite;
+}
+
+@keyframes powerPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 /* ===== TEXTO ESPECÍFICO AMARILLO PIXEL PARA SECCIÓN SOBRE MÍ ===== */
@@ -158,6 +193,7 @@ body {
 
 .gameboy-container {
     position: relative;
+    width: 320px;
 }
 
 .gameboy {
@@ -239,6 +275,13 @@ body {
     background: #8bac0f;
     color: #0f380f;
     text-shadow: none;
+}
+
+/* MEJORA #2: Botón NEW GAME con efecto especial */
+#newGameButton:hover {
+    background: #306230;
+    color: #9bbc0f;
+    transform: translateX(5px);
 }
 
 .battery-indicator {
@@ -431,31 +474,6 @@ body {
     height: 6px;
     background: #444;
     border-radius: 50%;
-}
-
-.power-light {
-    position: absolute;
-    top: 20px;
-    right: -60px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    color: #fff;
-}
-
-.power-indicator {
-    width: 12px;
-    height: 12px;
-    background: #ff6b6b;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ff6b6b;
-    animation: powerPulse 2s infinite;
-}
-
-@keyframes powerPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
 }
 
 /* ===== ESTILOS BASE GAMER ===== */
@@ -1213,17 +1231,19 @@ body {
     color: var(--neon-yellow);
 }
 
-/* ===== ESTILOS MEJORADOS PARA VIDEOS EN MÓVIL ===== */
+/* ===== FIX #1: VIDEO OPTIMIZADO PARA PC Y MÓVILES ===== */
 .gaming-project-image {
     height: 250px;
     position: relative;
     overflow: hidden;
+    background: var(--bg-terminal);
 }
 
 .project-screenshot {
     width: 100%;
     height: 100%;
     position: relative;
+    background: var(--bg-terminal);
 }
 
 .project-video {
@@ -1232,9 +1252,11 @@ body {
     object-fit: cover;
     border: 2px solid var(--neon-green);
     background: var(--bg-terminal);
-    -webkit-touch-callout: none;
+    display: block;
+    cursor: pointer;
 }
 
+/* FIX #1: Overlay de video corregido para PC */
 .video-overlay {
     position: absolute;
     top: 0;
@@ -1248,22 +1270,28 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease;
     z-index: 10;
-    pointer-events: auto;
-    cursor: pointer;
+    pointer-events: none;
 }
 
-.project-screenshot:hover .video-overlay {
+/* FIX #1: Solo mostrar overlay cuando el video no está reproduciéndose */
+.project-screenshot:not(.video-playing) .video-overlay {
     opacity: 1;
+    pointer-events: auto;
+}
+
+.project-screenshot.video-playing .video-overlay {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .play-button {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     background: var(--neon-green);
     border: none;
     border-radius: 50%;
     color: var(--bg-dark);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -1272,6 +1300,7 @@ body {
     z-index: 15;
     padding: 0;
     outline: none;
+    pointer-events: auto;
 }
 
 .play-button:hover, .play-button:focus {
@@ -1286,7 +1315,7 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1294,6 +1323,10 @@ body {
     text-align: center;
     padding: 1rem;
     z-index: 20;
+}
+
+.mobile-fallback.active {
+    display: flex;
 }
 
 .mobile-fallback p {
@@ -1345,15 +1378,15 @@ body {
     background: rgba(0, 255, 136, 0.8);
     border: 2px solid var(--neon-green);
     color: var(--bg-dark);
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     z-index: 30;
     padding: 0;
     outline: none;
@@ -1376,8 +1409,8 @@ body {
 }
 
 .carousel-indicator {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid var(--neon-green);
@@ -2133,20 +2166,15 @@ body {
         gap: 1rem;
     }
     
-    /* Mejoras para videos en móvil */
+    /* FIX #1: Optimizaciones específicas para video en móviles */
     .gaming-project-image {
         height: 200px;
     }
     
     .play-button {
-        width: 70px;
-        height: 70px;
-        font-size: 1.8rem;
-    }
-    
-    .video-overlay {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
     }
     
     .carousel-controls {
@@ -2155,9 +2183,9 @@ body {
     }
     
     .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
     }
     
     .carousel-indicators {
@@ -2165,11 +2193,11 @@ body {
     }
     
     .carousel-indicator {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
     }
     
-    /* Mejoras para modal de CV en móvil */
+    /* Ajustes para modal de CV en móvil */
     .cv-viewer-modal {
         width: 98%;
         height: 95vh;
@@ -2243,9 +2271,9 @@ body {
     }
     
     .play-button {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
+        width: 90px;
+        height: 90px;
+        font-size: 2.2rem;
     }
     
     .gaming-project-card {
@@ -2255,6 +2283,8 @@ body {
     .project-content {
         padding: 1rem;
     }
+    
+    /* FIX #1: Optimizaciones extra para móviles pequeños */
     
     /* Mejor legibilidad en móviles pequeños */
     .console-text {

@@ -1,6 +1,13 @@
 /* 
   Archivo: script.js
+  Versión: 2.0
   Modificaciones realizadas:
+  
+  FIX #1: Video de Juegos Unity visible en PC y móviles
+  FIX #2: Power light del Game Boy reposicionada correctamente
+  FIX #3: Sistema de video optimizado para todos los dispositivos
+  FIX #4: Mejor gestión del overlay de video y controles
+  
   - Sistema robusto de reproducción de video para móviles
   - Eventos touch + click mejorados
   - Función mejorada para ver el CV en móviles con PDF.js
@@ -11,19 +18,20 @@
 
 /** 
  * ============================================
- * PORTFOLIO GAMER - SCRIPT OPTIMIZADO
+ * PORTFOLIO GAMER - SCRIPT OPTIMIZADO V2.0
  * ============================================
  */
 
 // ===== INICIALIZACIÓN GAMER =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Inicializando sistema Gamer Portfolio...');
+    console.log('🚀 Inicializando sistema Gamer Portfolio v2.0...');
     initializeGameboyStart();
 });
 
 // ===== PANTALLA INICIAL GAMEBOY =====
 function initializeGameboyStart() {
     const startButton = document.getElementById('startButton');
+    const newGameButton = document.getElementById('newGameButton');
     const gameboyScreen = document.getElementById('gameboy-start');
     const portfolioContent = document.getElementById('portfolio-content');
     const menuOptions = document.querySelectorAll('.menu-option');
@@ -97,36 +105,57 @@ function initializeGameboyStart() {
         });
     });
 
+    // Función para iniciar la transición al portfolio
+    function startPortfolioTransition(button) {
+        playStartSound();
+        
+        if (button) {
+            button.style.transform = 'scale(0.9)';
+            button.style.boxShadow = 'inset 0 0 0 2px rgba(0,0,0,0.3)';
+        }
+        
+        setTimeout(() => {
+            gameboyScreen.classList.add('fade-out');
+            
+            setTimeout(() => {
+                gameboyScreen.style.display = 'none';
+                portfolioContent.style.display = 'block';
+                
+                setTimeout(() => {
+                    portfolioContent.classList.add('active');
+                    initializePortfolioSystem();
+                }, 100);
+                
+            }, 1000);
+            
+        }, 200);
+    }
+
     // Botón START - Transición al portfolio
     if (startButton) {
         startButton.addEventListener('mouseenter', playButtonSound);
         
         startButton.addEventListener('click', function() {
-            playStartSound();
-            
-            this.style.transform = 'scale(0.9)';
-            this.style.boxShadow = 'inset 0 0 0 2px rgba(0,0,0,0.3)';
-            
-            setTimeout(() => {
-                gameboyScreen.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    gameboyScreen.style.display = 'none';
-                    portfolioContent.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        portfolioContent.classList.add('active');
-                        initializePortfolioSystem();
-                    }, 100);
-                    
-                }, 1000);
-                
-            }, 200);
+            startPortfolioTransition(this);
         });
 
         startButton.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
             this.style.boxShadow = '';
+        });
+    }
+
+    // Botón NEW GAME también inicia el portfolio
+    if (newGameButton) {
+        newGameButton.addEventListener('mouseenter', playButtonSound);
+        
+        newGameButton.addEventListener('click', function() {
+            startPortfolioTransition(this);
+        });
+
+        newGameButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+            this.style.textShadow = 'none';
         });
     }
 
@@ -152,7 +181,7 @@ function initializeGameboyStart() {
 
 // ===== INICIALIZAR SISTEMA DEL PORTFOLIO =====
 function initializePortfolioSystem() {
-    console.log('🎮 Inicializando sistema del portfolio...');
+    console.log('🎮 Inicializando sistema del portfolio v2.0...');
     
     // Inicializar componentes
     initializeParticles();
@@ -168,16 +197,19 @@ function initializePortfolioSystem() {
     initializeStatsBars();
     handleImageErrors();
     
-    // FIX: Inicializar sistema de videos mejorado para móvil
+    // FIX #1: Inicializar sistema de videos optimizado para PC y móviles
     initializeVideoSystem();
     initializeVideoLoading();
     initializeCarousels();
     
-    // FIX: Inicializar sistema de PDF para móviles
+    // Inicializar sistema de PDF para móviles
     initializePDFSystem();
     
-    // FIX: Configurar botón VER CV para móviles
+    // Configurar botón VER CV para móviles
     setupCVButtonForMobile();
+    
+    // FIX #1: Mostrar controles de video en PC
+    setupVideoControlsForPC();
     
     console.log('✅ Sistema del portfolio inicializado correctamente');
 }
@@ -482,7 +514,7 @@ function simulateFormSubmission() {
     }, 2000);
 }
 
-// ===== SISTEMA DE CARRUSEL DE VIDEOS - MEJORADO =====
+// ===== FIX #1: SISTEMA DE CARRUSEL DE VIDEOS - MEJORADO =====
 const carouselState = {};
 
 function initializeCarousels() {
@@ -587,13 +619,13 @@ function changeVideo(button, direction) {
     playButtonSound();
 }
 
-// ===== SISTEMA DE VIDEOS MEJORADO PARA MÓVIL =====
+// ===== FIX #1: SISTEMA DE VIDEOS OPTIMIZADO PARA PC Y MÓVILES =====
 function initializeVideoSystem() {
-    console.log('🎥 Inicializando sistema de videos con soporte táctil...');
+    console.log('🎥 Inicializando sistema de videos con soporte táctil mejorado...');
     
     const playButtons = document.querySelectorAll('.play-button');
     playButtons.forEach(button => {
-        // FIX: Agregar eventos táctiles y de clic
+        // Eventos táctiles y de clic mejorados
         button.addEventListener('click', handleVideoPlay);
         button.addEventListener('touchstart', handleVideoPlay, { passive: false });
         
@@ -619,30 +651,104 @@ function initializeVideoSystem() {
         }, { passive: false });
     });
     
+    // FIX #1: Manejar clics en el video para PC
+    const videos = document.querySelectorAll('.project-video');
+    videos.forEach(video => {
+        video.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (this.paused) {
+                this.play();
+                this.parentElement.classList.add('video-playing');
+            } else {
+                this.pause();
+                this.parentElement.classList.remove('video-playing');
+            }
+        });
+    });
+    
+    // Pausar todos los videos cuando la pestaña pierde foco
     document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
             pauseAllVideos();
         }
     });
     
-    const videos = document.querySelectorAll('.project-video');
+    // Configuración específica para videos en móviles
     videos.forEach(video => {
+        // Configuración específica para iOS
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('x-webkit-airplay', 'allow');
+        
         video.addEventListener('ended', function() {
+            this.parentElement.classList.remove('video-playing');
             resetVideoOverlay(this);
         });
         
         video.addEventListener('pause', function() {
+            this.parentElement.classList.remove('video-playing');
             resetVideoOverlay(this);
         });
         
-        // FIX: Manejar errores de reproducción
+        video.addEventListener('play', function() {
+            this.parentElement.classList.add('video-playing');
+            hideVideoOverlay(this);
+        });
+        
+        // Manejo mejorado de errores
         video.addEventListener('error', function(e) {
             console.error('❌ Error reproduciendo video:', e);
+            console.error('Código de error:', this.error ? this.error.code : 'Desconocido');
             showVideoFallback(this);
+        });
+        
+        // Evento para detectar problemas de carga
+        video.addEventListener('stalled', function() {
+            console.warn('⚠️ Video se atascó, intentando recuperar...');
+            this.load();
         });
     });
     
-    console.log('✅ Sistema de videos inicializado con soporte táctil');
+    console.log('✅ Sistema de videos inicializado con soporte optimizado para PC y móviles');
+}
+
+// FIX #1: Configurar controles de video para PC
+function setupVideoControlsForPC() {
+    if (!isMobileDevice()) {
+        console.log('🖥️ Configurando controles de video para PC...');
+        
+        const videos = document.querySelectorAll('.project-video');
+        videos.forEach(video => {
+            // En PC, mostrar controles nativos del navegador
+            video.setAttribute('controls', '');
+            
+            // Ocultar overlay inicialmente en PC
+            const overlay = video.nextElementSibling;
+            if (overlay && overlay.classList.contains('video-overlay')) {
+                overlay.style.display = 'none';
+            }
+            
+            // Mostrar overlay cuando el video se pausa
+            video.addEventListener('pause', function() {
+                const overlay = this.nextElementSibling;
+                if (overlay && overlay.classList.contains('video-overlay')) {
+                    overlay.style.display = 'flex';
+                    overlay.style.opacity = '1';
+                }
+            });
+            
+            // Ocultar overlay cuando el video se reproduce
+            video.addEventListener('play', function() {
+                const overlay = this.nextElementSibling;
+                if (overlay && overlay.classList.contains('video-overlay')) {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    }
 }
 
 function handleVideoPlay(e) {
@@ -654,12 +760,11 @@ function handleVideoPlay(e) {
     }
     
     const videoItem = this.closest('.video-item');
-    if (!videoItem) return;
+    const video = videoItem ? videoItem.querySelector('.project-video') : this.closest('.project-screenshot').querySelector('.project-video');
     
-    const video = videoItem.querySelector('.project-video');
     if (!video) return;
     
-    const carousel = videoItem.closest('.video-carousel');
+    const carousel = video.closest('.video-carousel');
     if (carousel) {
         const carouselId = Array.from(document.querySelectorAll('.video-carousel')).indexOf(carousel);
         if (carouselState[`carousel-${carouselId}`]) {
@@ -667,70 +772,108 @@ function handleVideoPlay(e) {
         }
     }
     
-    // FIX: Intentar reproducir con manejo de errores
-    video.play().then(() => {
-        console.log('▶️ Video reproduciéndose');
-        this.style.display = 'none';
-        const overlay = this.closest('.video-overlay');
-        if (overlay) {
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 300);
-        }
-    }).catch(error => {
-        console.error('❌ Error al reproducir video:', error);
-        
-        showVideoFallback(video);
-        
-        if (isMobileDevice()) {
-            showNotification('> Para reproducir el video, tócalo nuevamente o ábrelo en nueva pestaña', 'error');
-        }
-    });
+    // Estrategia de reproducción optimizada
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log('▶️ Video reproduciéndose correctamente');
+            this.style.display = 'none';
+            const overlay = this.closest('.video-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            }
+        }).catch(error => {
+            console.error('❌ Error al reproducir video:', error);
+            
+            // Estrategias de fallback para diferentes navegadores
+            if (error.name === 'NotAllowedError') {
+                console.log('🔒 Reproducción bloqueada por política del navegador');
+                
+                // Intentar con muted si está disponible
+                if (!video.muted) {
+                    video.muted = true;
+                    video.play().then(() => {
+                        console.log('✅ Video reproduciéndose silenciado');
+                        this.style.display = 'none';
+                        const overlay = this.closest('.video-overlay');
+                        if (overlay) {
+                            overlay.style.opacity = '0';
+                            setTimeout(() => {
+                                overlay.style.display = 'none';
+                            }, 300);
+                        }
+                    }).catch(err => {
+                        console.error('❌ Error incluso con muted:', err);
+                        showVideoFallback(video);
+                    });
+                } else {
+                    showVideoFallback(video);
+                }
+            } else {
+                showVideoFallback(video);
+            }
+            
+            // Mostrar mensaje informativo para usuarios
+            if (isMobileDevice()) {
+                showNotification('> Para reproducir el video, tócalo nuevamente. Algunos navegadores requieren interacción directa.', 'error');
+            }
+        });
+    }
 }
 
 function showVideoFallback(video) {
     const videoItem = video.closest('.video-item');
-    if (!videoItem) return;
+    const screenshot = video.closest('.project-screenshot');
+    
+    if (!screenshot) return;
     
     video.style.display = 'none';
     
-    let fallback = videoItem.querySelector('.mobile-fallback');
-    if (!fallback) {
-        fallback = document.createElement('div');
-        fallback.className = 'mobile-fallback';
-        fallback.innerHTML = `
-            <p>El video no se puede reproducir en este dispositivo.</p>
-            <a href="${video.querySelector('source')?.src || '#'}" target="_blank" class="btn gaming-btn secondary">
-                <i class="fas fa-external-link-alt"></i>
-                VER EN NUEVA PESTAÑA
-            </a>
-        `;
-        videoItem.appendChild(fallback);
+    let fallback = screenshot.querySelector('.mobile-fallback');
+    if (fallback) {
+        fallback.classList.add('active');
     }
-    fallback.style.display = 'flex';
     
     const projectCard = video.closest('.gaming-project-card');
     if (projectCard) {
         const fallbackLink = projectCard.querySelector('.fallback-link');
         if (fallbackLink) {
-            fallbackLink.href = video.querySelector('source')?.src || '#';
+            const videoSource = video.querySelector('source')?.src || video.src;
+            fallbackLink.href = videoSource;
             fallbackLink.style.display = 'flex';
         }
+    }
+    
+    console.log('🔄 Mostrando fallback para video no reproducible');
+}
+
+function hideVideoOverlay(video) {
+    const overlay = video.nextElementSibling;
+    if (overlay && overlay.classList.contains('video-overlay')) {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 300);
     }
 }
 
 function resetVideoOverlay(video) {
-    const videoItem = video.closest('.video-item');
-    if (!videoItem) return;
+    const screenshot = video.closest('.project-screenshot');
+    if (!screenshot) return;
     
-    const overlay = videoItem.querySelector('.video-overlay');
+    const overlay = screenshot.querySelector('.video-overlay');
     const playButton = overlay?.querySelector('.play-button');
     
-    // FIX: Verificar si el video está reproduciéndose antes de resetear
+    // Verificar si el video está reproduciéndose antes de resetear
     if (!video.paused && !video.ended) {
         return;
     }
+    
+    screenshot.classList.remove('video-playing');
     
     if (overlay) {
         overlay.style.display = 'flex';
@@ -741,7 +884,7 @@ function resetVideoOverlay(video) {
         playButton.style.display = 'flex';
     }
     
-    const carousel = videoItem.closest('.video-carousel');
+    const carousel = video.closest('.video-carousel');
     if (carousel) {
         const carouselId = Array.from(document.querySelectorAll('.video-carousel')).indexOf(carousel);
         if (carouselState[`carousel-${carouselId}`]) {
@@ -764,17 +907,35 @@ function initializeVideoLoading() {
     const videos = document.querySelectorAll('.project-video');
     
     videos.forEach(video => {
+        // Precarga optimizada para móviles
+        if (isMobileDevice()) {
+            video.setAttribute('preload', 'metadata');
+        }
+        
         video.addEventListener('loadedmetadata', function() {
             console.log(`✅ Video cargado: ${this.currentSrc || this.src}`);
+            console.log(`📊 Duración: ${this.duration}s, Dimensiones: ${this.videoWidth}x${this.videoHeight}`);
         });
         
         video.addEventListener('error', function() {
             console.error(`❌ Error cargando video: ${this.src}`);
+            console.error(`Tipo de error: ${this.error ? this.error.code : 'Desconocido'}`);
             showVideoFallback(this);
         });
         
         video.addEventListener('canplaythrough', function() {
-            console.log(`🎬 Video listo para reproducir: ${this.currentSrc || this.src}`);
+            console.log(`🎬 Video listo para reproducir completamente: ${this.currentSrc || this.src}`);
+        });
+        
+        // Monitorear progreso de carga
+        video.addEventListener('progress', function() {
+            if (this.buffered.length > 0) {
+                const bufferedEnd = this.buffered.end(this.buffered.length - 1);
+                const percentage = (bufferedEnd / this.duration) * 100;
+                if (percentage > 50) {
+                    console.log(`📥 Video ${Math.round(percentage)}% cargado`);
+                }
+            }
         });
     });
 }
@@ -873,6 +1034,7 @@ async function loadPDFWithJS() {
     } catch (error) {
         console.error('❌ Error cargando PDF con PDF.js:', error);
         
+        // Fallback a iframe
         loadPDFWithIframe();
     }
 }
@@ -1310,4 +1472,4 @@ function handleImageErrors() {
     });
 }
 
-console.log('✅ Sistema Gamer Portfolio optimizado y listo');
+console.log('✅ Sistema Gamer Portfolio v2.0 optimizado y listo');
